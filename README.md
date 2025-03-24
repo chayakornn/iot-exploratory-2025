@@ -29,10 +29,10 @@ Welcome to the workshop repository! This repo is structured largely based on the
 ## 📖 Table of Contents
 
 ### Embedded Hardware
-- **[ESP32]**(Embedded%20Hardware/ESP32)
+- **[ESP32](Embedded%20Hardware/ESP32)**
   - [Sensors](Embedded%20Hardware/ESP32/sensors)
   - [Actuators](Embedded%20Hardware/ESP32/actuators)
-- **[Raspberry Pi]**(Embedded%20Hardware/RaspberryPi)
+- **[Raspberry Pi](Embedded%20Hardware/RaspberryPi)**
   - [Sensors](Embedded%20Hardware/RaspberryPi/sensors)
   - [Actuators](Embedded%20Hardware/RaspberryPi/actuators)
 
