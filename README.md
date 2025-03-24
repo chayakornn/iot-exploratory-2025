@@ -1,6 +1,6 @@
 # IoT Exploratory 2025 Code Repository
 
-Welcome to the workshop repository! This repo is structured largely based on the **Embedded Hardware Workshop** and the **Communication and Cloud workshop**.
+This repository is structured based on the **Embedded Hardware Workshop** and the **Communication and Cloud workshop**.
 
 ## 📌 Code Repository
 
