@@ -68,7 +68,7 @@ Explore the examples to learn how to **read sensor data, display information, an
 
 ### Sensors
 
-- **Digital Switch**  
+#### Digital Switch  
 
   <img src="https://i.lnwfile.com/_/i/_raw/eq/f0/3c.jpg" alt="Push Button" width="150">
   
