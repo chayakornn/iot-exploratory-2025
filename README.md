@@ -9,6 +9,7 @@ This repository is structured based on the **Embedded Hardware Workshop** and th
 │-- 📂 Embedded Hardware
 │   │-- 📂 ESP32
 │   │   │-- 📂 sensors
+│   │   │-- 📂 peripherals
 │   │   │-- 📂 actuators
 │   │-- 📂 RaspberryPi
 │   │   │-- 📂 sensors
@@ -30,11 +31,7 @@ This repository is structured based on the **Embedded Hardware Workshop** and th
 
 ### Embedded Hardware
 - **[ESP32](Embedded%20Hardware/ESP32)**
-  - [Sensors](Embedded%20Hardware/ESP32/sensors)
-  - [Actuators](Embedded%20Hardware/ESP32/actuators)
 - **[Raspberry Pi](Embedded%20Hardware/RaspberryPi)**
-  - [Sensors](Embedded%20Hardware/RaspberryPi/sensors)
-  - [Actuators](Embedded%20Hardware/RaspberryPi/actuators)
 
 ### Communication & Cloud
 - **MQTT**
