@@ -71,7 +71,7 @@ Explore the examples to learn how to **read sensor data, display information, an
 
 #### Digital Switch  
 
-  <img src="https://i.lnwfile.com/_/i/_raw/eq/f0/3c.jpg" alt="Push Button" width="150">
+  <img src="https://i.lnwfile.com/_/i/_raw/eq/f0/3c.jpg" alt="Push Button" width="350">
   
   *Image Source: [[Arduino All](https://arduinoall.com)]*  
 
@@ -106,7 +106,7 @@ Explore the examples to learn how to **read sensor data, display information, an
 
 #### Potentiometer
 
-  <img src="https://electricityforum.com/uploads/articles/potentiometer2_1496554845.webp" alt="Potentiometer" width="150">
+  <img src="https://electricityforum.com/uploads/articles/potentiometer2_1496554845.webp" alt="Potentiometer" width="350">
 
   *Image Source: [[https://electricityforum.com](https://electricityforum.com/what-is-a-potentiometer)]*  
   
@@ -137,7 +137,7 @@ Explore the examples to learn how to **read sensor data, display information, an
 
 #### BH1750 Light Sensor
 
-  <img src="https://esphome.io/_images/bh1750-full.jpg" alt="BH1750" width="150">
+  <img src="https://esphome.io/_images/bh1750-full.jpg" alt="BH1750" width="350">
 
   *Image Source: [[https://esphome.io](https://esphome.io/components/sensor/bh1750.html)]*  
 
@@ -188,7 +188,7 @@ Explore the examples to learn how to **read sensor data, display information, an
 
 #### RCWL-0516 Microwave Radar Sensor
 
-  <img src="https://static.cytron.io/image/cache/catalog/products/SN-RCWL-0516/SN-RCWL-0516-800x800.jpg" alt="RCWL-0516 Microwave Radar Sensor" width="150">
+  <img src="https://static.cytron.io/image/cache/catalog/products/SN-RCWL-0516/SN-RCWL-0516-800x800.jpg" alt="RCWL-0516 Microwave Radar Sensor" width="350">
 
   *Image Source: [[https://static.cytron.io](https://static.cytron.io/image/cache/catalog/products/SN-RCWL-0516/SN-RCWL-0516-800x800.jpg)]*  
 
@@ -225,7 +225,7 @@ Explore the examples to learn how to **read sensor data, display information, an
 
 #### DHT11 Temperature & Humidity Sensor
 
-    <img src="https://static.cytron.io/image/cache/catalog/products/SN-DHT11-MOD/SN-DHT11-MOD%20(a)-800x800.jpg" alt="DHT11" width="150">
+    <img src="https://static.cytron.io/image/cache/catalog/products/SN-DHT11-MOD/SN-DHT11-MOD%20(a)-800x800.jpg" alt="DHT11" width="350">
 
   *Image Source: [[https://static.cytron.io](https://static.cytron.io/image/cache/catalog/products/SN-DHT11-MOD/SN-DHT11-MOD%20(a)-800x800.jpg)]*  
 
