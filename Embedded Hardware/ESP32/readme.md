@@ -227,9 +227,9 @@ Explore the examples to learn how to **read sensor data, display information, an
 ---
 #### DHT11 Temperature & Humidity Sensor
 
-    <img src="https://static.cytron.io/image/cache/catalog/products/SN-DHT11-MOD/SN-DHT11-MOD%20(a)-800x800.jpg" alt="DHT11" width="350">
+  <img src="https://components101.com/sites/default/files/components/DHT11-Sensor.jpg" alt="DHT11" width="350"/>
 
-  *Image Source: [[https://static.cytron.io](https://static.cytron.io/image/cache/catalog/products/SN-DHT11-MOD/SN-DHT11-MOD%20(a)-800x800.jpg)]*  
+  *Image Source: [[https://components101.com](https://components101.com/sites/default/files/components/DHT11-Sensor.jpg)]*  
 
   The **DHT11** is a popular **temperature and humidity sensor** that provides digital output via a single data pin. It is commonly used in **weather stations, home automation, and environmental monitoring**.  
 
