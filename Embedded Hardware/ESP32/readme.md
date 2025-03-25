@@ -50,7 +50,7 @@ Explore the examples to learn how to **read sensor data, display information, an
 │   │-- Relay board
 │-- 📜 README.md
 ```
-
+---
 ## 📖 Table of Contents
 - [**Sensors**](#sensors)
   - [Digital Switch](#digital-switch)
@@ -66,9 +66,11 @@ Explore the examples to learn how to **read sensor data, display information, an
   - Buzzer Module
   - LED Traffic Light Module
 
+---
 ### Sensors
 **Sensors** are devices that detect changes in the environment and convert them into electrical signals that can be processed by a microcontroller or computer. In the context of IoT, sensors play a crucial role in collecting data from the physical world, such as temperature, humidity, motion, light, and more. By integrating sensors into IoT projects, we can gather real-time data and make intelligent decisions based on that information.
 
+---
 #### Digital Switch  
 
   <img src="https://i.lnwfile.com/_/i/_raw/eq/f0/3c.jpg" alt="Push Button" width="350">
@@ -103,7 +105,7 @@ Explore the examples to learn how to **read sensor data, display information, an
       delay(100);
   }
 ```
-
+---
 #### Potentiometer
 
   <img src="https://electricityforum.com/uploads/articles/potentiometer2_1496554845.webp" alt="Potentiometer" width="350">
@@ -134,7 +136,7 @@ Explore the examples to learn how to **read sensor data, display information, an
       delay(100);
   }
 ```
-
+---
 #### BH1750 Light Sensor
 
   <img src="https://esphome.io/_images/bh1750-full.jpg" alt="BH1750" width="350">
@@ -185,7 +187,7 @@ Explore the examples to learn how to **read sensor data, display information, an
       delay(1000);  // Read every second
   }
 ```
-
+---
 #### RCWL-0516 Microwave Radar Sensor
 
   <img src="https://static.cytron.io/image/cache/catalog/products/SN-RCWL-0516/SN-RCWL-0516-800x800.jpg" alt="RCWL-0516 Microwave Radar Sensor" width="350">
@@ -222,7 +224,7 @@ Explore the examples to learn how to **read sensor data, display information, an
       delay(500);  // Adjust delay as needed
   }
 ```
-
+---
 #### DHT11 Temperature & Humidity Sensor
 
     <img src="https://static.cytron.io/image/cache/catalog/products/SN-DHT11-MOD/SN-DHT11-MOD%20(a)-800x800.jpg" alt="DHT11" width="350">
