@@ -1,19 +1,36 @@
 # ESP32 - IoT Exploratory 2025
 
-This section contains examples for working with **ESP32** microcontroller.
+## Introduction to ESP32
+
+The **ESP32** is a powerful, low-cost microcontroller with built-in **Wi-Fi** and **Bluetooth**, making it ideal for IoT applications. It features multiple **GPIOs**, **analog inputs**, and **digital interfaces** like **I2C, SPI, and UART**. With robust processing capabilities and low power consumption, ESP32 is widely used for **sensor data collection, automation, and real-time communication** in IoT projects.
+
+In this workshop, we will explore ESP32’s capabilities through **hands-on examples** covering **sensors, peripherals, and actuators** to build smart IoT solutions. 🚀
+
+## ESP32 Pinout Diagram
+
+Here is the pinout diagram for the **ESP32 DevKit V1 (30-pin version):**
+
+![ESP32 Pinout](https://lastminuteengineers.com/wp-content/uploads/iot/ESP32-Pinout.png)
+*Image Source: [https://lastminuteengineers.com](https://lastminuteengineers.com)*
+
+## Sensors, Peripherals and Actuators
+
+This section covers some **hardware components** used with ESP32 in this workshop, including **sensors** for data collection, **peripherals** for interfacing, and **actuators** for controlling external devices. These components form the backbone of IoT applications, enabling interaction with the physical world.  
+
+Explore the examples to learn how to **read sensor data, display information, and control actuators** using ESP32! 🚀  
 
 ```
 📂 ESP32
-│-- 📂 sensors
+│-- 📂 [Sensors](#sensors)
 │   │-- Digital switch
 │   │-- Potentiometer
 │   │-- BH1750 Light sensor
-│   │-- LTR390 Ultraviolet sensor
 │   │-- RCWL-0516 Microwave radar sensor
+│   │-- DHT11 Temperature and humidity sensor
+│   │-- LTR390 Ultraviolet sensor
 │   │-- BME680 Air quality sensor
 │   │-- Analog turbidity sensor
 │   │-- MSP430FR2676 Capacitive touch sensor
-│   │-- DHT11 Temperature and humidity sensor
 │   │-- AO-03 ASAir Oxygen sensor
 │   │-- MH-Z19C CO2 sensor
 │   │-- GY-906-BCC Non-contact temperature sensor
@@ -35,122 +52,226 @@ This section contains examples for working with **ESP32** microcontroller.
 ```
 
 ## 📖 Table of Contents
+- [**Sensors**](#sensors)
+  - [Digital Switch](#digital-switch)
+  - [Potentiometer](#potentiometer)
+  - [BH1750 Light Sensor](#bh1750-light-sensor)
+  - [RCWL-0516 Microwave Radar Sensor](#rcwl-0516-microwave-radar-sensor)
+- [**Peripherals**](#peripherals)
+  - 4x4 Matrix Keypad
+  - 0.91-inch OLED Display
+  - LED and Keypad Module
+- [**Actuators**](#actuators)
+  - 5V DC Fan
+  - Buzzer Module
+  - LED Traffic Light Module
 
 ### Sensors
-- **Digital switch**
 
-  Connect a push button to the IO pin of the microcontroller, e.g. at pin 4, then use the following code to read the button.
+- **Digital Switch**  
+
+  <img src="https://i.lnwfile.com/_/i/_raw/eq/f0/3c.jpg" alt="Push Button" width="150">
+  
+  *Image Source: [[Arduino All](https://arduinoall.com)]*  
+
+  A **digital switch (push button)** allows the ESP32 to detect user input and trigger actions based on its state. This type of button has **three pins**:  
+
+  - **V (Voltage)** → Connects to **3.3V or 5V**  
+  - **G (Ground)** → Connects to **GND**  
+  - **S (Signal)** → Connects to a **GPIO pin** (e.g., GPIO 4)  
+
+  **🛠 Wiring:**  
+  - **V** → **3.3V (ESP32)**  
+  - **G** → **GND**  
+  - **S** → **GPIO 4**  
+
+  **📜 Example Code:**  
 
   ```cpp
-  // Define the pin numbers
-  const int buttonPin = 4;  // Pin where the button is connected
-  const int ledPin =  2;    // Pin where the LED is connected
-  
-  // Variable to hold button state
-  int buttonState = 0;       
-  
+  const int buttonPin = 4;  // Define the GPIO pin
+  int buttonState = 0;  
+
   void setup() {
-    // Initialize the LED pin as an output
-    pinMode(ledPin, OUTPUT);
-    // Initialize the button pin as an input
-    pinMode(buttonPin, INPUT);
+      pinMode(buttonPin, INPUT);  // Set button pin as input
+      Serial.begin(115200);
   }
-  
+
   void loop() {
-    // Read the state of the button
-    buttonState = digitalRead(buttonPin);
-  
-    // Check if the button is pressed
-    if (buttonState == HIGH) {
-      // Turn the LED on if the button is pressed
-      digitalWrite(ledPin, HIGH);
-    } else {
-      // Turn the LED off if the button is not pressed
-      digitalWrite(ledPin, LOW);
-    }
+      buttonState = digitalRead(buttonPin);  // Read button state
+      Serial.println(buttonState ? "Button Released" : "Button Pressed");
+      delay(100);
   }
-  ```
 
 - **Potentiometer**
 
-  Connect a potentiometer to pin 34 then use the following code to read the potentiometer.
+  <img src="https://electricityforum.com/uploads/articles/potentiometer2_1496554845.webp" alt="Potentiometer" width="150">
+
+  *Image Source: [[https://electricityforum.com](https://electricityforum.com/what-is-a-potentiometer)]*  
   
+  A **potentiometer** (variable resistor) commonly used for adjusting brightness, volume, or other input values. It outputs a variable voltage between **0V and 3.3V**, which the ESP32 reads using its **ADC (Analog-to-Digital Converter)**.  
+
+  **🛠 Wiring:**  
+  - **VCC (Left pin)** → **3.3V**  
+  - **GND (Right pin)** → **GND**  
+  - **Output (Middle pin)** → **GPIO 34**  
+
+  **📜 Example Code:**  
+
   ```cpp
-  // Define the potentiometer pin
-  const int potPin = 34;  // GPIO34 (analog input pin on ESP32)
-  
-  // Variable to store the potentiometer value
-  int potValue = 0;
-  
+  const int potPin = 34;  // Potentiometer connected to GPIO 34
+  int potValue = 0;       // Variable to store ADC reading
+
   void setup() {
-    // Start serial communication
-    Serial.begin(115200);
-  
-    // Set the potentiometer pin as an input
-    pinMode(potPin, INPUT);
+      Serial.begin(115200);
   }
-  
+
   void loop() {
-    // Read the potentiometer value (0 to 4095)
-    potValue = analogRead(potPin);
-  
-    // Print the potentiometer value to the serial monitor
-    Serial.print("Potentiometer Value: ");
-    Serial.println(potValue);
-  
-    // Add a small delay before the next reading
-    delay(500);
+      potValue = analogRead(potPin);  // Read analog value (0-4095)
+      Serial.print("Potentiometer Value: ");
+      Serial.println(potValue);
+      delay(100);
   }
-  
-  ```
 
-- **BH1750 Light sensor**
+- **BH1750 Light Sensor**  
 
-  This example demonstrates how to read values from a **BH1750 Light Sensor** using an **ESP32** (30-pin version). The BH1750 communicates via **I2C**.
-  
-  #### Requirements:
-  - You will need to install the **BH1750** library in the Arduino IDE. Go to **Sketch** → **Include Library** → **Manage Libraries**, then search for **BH1750** and install it.
-  - The **I2C address** for the BH1750 is typically `0x23` (default).
-  
+  <img src="https://esphome.io/_images/bh1750-full.jpg" alt="BH1750" width="150">
+
+  *Image Source: [[https://esphome.io](https://esphome.io/components/sensor/bh1750.html)]*  
+
+  The **BH1750** is a digital ambient light sensor that measures **illuminance (lux)** using an **I2C interface**. It is useful for **automatic brightness adjustment, smart lighting, and environmental monitoring**. The ESP32 reads the sensor data via **GPIO 21 (SDA) and GPIO 22 (SCL)**.  
+
+  **🛠 Wiring:**  
+  - **VCC** → **3.3V** (or **5V**, depending on module)  
+  - **GND** → **GND**  
+  - **SDA** → **GPIO 21**  
+  - **SCL** → **GPIO 22**  
+
+  **📥 Library Installation:**  
+  Before running the code, install the **BH1750** library:  
+  1. Open **Arduino IDE**.  
+  2. Go to **Sketch** → **Include Library** → **Manage Libraries**.  
+  3. Search for **BH1750**, select it, and click **Install**.  
+
+  **📜 Example Code:**  
+
   ```cpp
   #include <Wire.h>
   #include <BH1750.h>
-  
-  // Create an instance of the BH1750 sensor
+
   BH1750 lightSensor;
-  
+
   void setup() {
-    // Start the serial communication
-    Serial.begin(115200);
-  
-    // Initialize I2C communication on default pins (SDA = GPIO21, SCL = GPIO22 on ESP32)
-    Wire.begin();
-  
-    // Initialize the BH1750 sensor
-    if (lightSensor.begin()) {
-      Serial.println("BH1750 sensor initialized successfully.");
-    } else {
-      Serial.println("Error: Failed to initialize BH1750 sensor.");
-      while (1);  // Stop further execution if sensor fails
-    }
+      Serial.begin(115200);
+      Wire.begin();  // Initialize I2C (SDA=GPIO21, SCL=GPIO22)
+
+      if (lightSensor.begin()) {
+          Serial.println("BH1750 sensor initialized successfully.");
+      } else {
+          Serial.println("Error: Failed to initialize BH1750 sensor.");
+          while (1);  // Stop execution if sensor fails
+      }
   }
-  
+
   void loop() {
-    // Read the light level in lux
-    float lux = lightSensor.readLightLevel();
-  
-    // Print the light level to the serial monitor
-    Serial.print("Light Level: ");
-    Serial.print(lux);
-    Serial.println(" lux");
-  
-    // Add a small delay before the next reading
-    delay(1000);
+      float lux = lightSensor.readLightLevel();  // Read light level
+
+      Serial.print("Light Level: ");
+      Serial.print(lux);
+      Serial.println(" lux");
+
+      delay(1000);  // Read every second
   }
-  
+
+- **RCWL-0516 Microwave Radar Sensor**  
+
+  <img src="https://static.cytron.io/image/cache/catalog/products/SN-RCWL-0516/SN-RCWL-0516-800x800.jpg" alt="RCWL-0516 Microwave Radar Sensor" width="150">
+
+  *Image Source: [[https://static.cytron.io](https://static.cytron.io/image/cache/catalog/products/SN-RCWL-0516/SN-RCWL-0516-800x800.jpg)]*  
+
+  The **RCWL-0516** is a **microwave motion sensor** that detects movement using **Doppler radar technology** rather than infrared. Unlike PIR sensors, it can detect motion through **walls, glass, and plastic**, making it ideal for **security systems, automation, and smart lighting**.  
+
+  **🛠 Wiring:**  
+  - **VIN** → **3.3V or 5V**  
+  - **GND** → **GND**  
+  - **OUT** → **GPIO 4** (or any digital pin)  
+
+  **📜 Example Code:**  
+
+  ```cpp
+  const int sensorPin = 4;  // RCWL-0516 OUT pin connected to GPIO 4
+  int motionState = 0;  
+
+  void setup() {
+      pinMode(sensorPin, INPUT);
+      Serial.begin(115200);
+  }
+
+  void loop() {
+      motionState = digitalRead(sensorPin);  // Read motion sensor output
+
+      if (motionState == HIGH) {
+          Serial.println("Motion detected!");
+      } else {
+          Serial.println("No motion.");
+      }
+      
+      delay(500);  // Adjust delay as needed
+  }
+
+- **DHT11 Temperature & Humidity Sensor**  
+
+    <img src="https://static.cytron.io/image/cache/catalog/products/SN-DHT11-MOD/SN-DHT11-MOD%20(a)-800x800.jpg" alt="DHT11" width="150">
+
+  *Image Source: [[https://static.cytron.io](https://static.cytron.io/image/cache/catalog/products/SN-DHT11-MOD/SN-DHT11-MOD%20(a)-800x800.jpg)]*  
+
+  The **DHT11** is a popular **temperature and humidity sensor** that provides digital output via a single data pin. It is commonly used in **weather stations, home automation, and environmental monitoring**.  
+
+  **🛠 Wiring:**  
+  - **VCC** → **3.3V or 5V** (ESP32 supports both)  
+  - **GND** → **GND**  
+  - **DATA** → **GPIO 2** (or any digital pin)  
+  - (Optional) **10kΩ pull-up resistor** between **DATA** and **VCC**  
+
+  **📜 Example Code:**  
+
+  ```cpp
+  // Include the DHT11 library for interfacing with the sensor.
+  #include <DHT11.h>
+
+  // Create an instance of the DHT11 class.
+  // - For ESP32: Connect the sensor to pin GPIO2.
+  DHT11 dht11(2);
+
+  void setup() {
+      // Initialize serial communication for debugging and data readout.
+      Serial.begin(9600);
+      
+      // Uncomment the line below to set a custom delay between sensor readings (in milliseconds).
+      // dht11.setDelay(500); // Default delay is 500ms.
+  }
+
+  void loop() {
+      int temperature = 0;
+      int humidity = 0;
+
+      // Read temperature and humidity values from the DHT11 sensor.
+      int result = dht11.readTemperatureHumidity(temperature, humidity);
+
+      // Check if the reading is successful.
+      if (result == 0) {
+          Serial.print("Temperature: ");
+          Serial.print(temperature);
+          Serial.print(" °C\tHumidity: ");
+          Serial.print(humidity);
+          Serial.println(" %");
+      } else {
+          // Print an error message if the reading fails.
+          Serial.println(DHT11::getErrorString(result));
+      }
+  }
+
 
 - LTR390 Ultraviolet sensor
-- RCWL-0516 Microwave radar sensor
 - BME680 Air quality sensor
 - Analog turbidity sensor
 - MSP430FR2676 Capacitive touch sensor
