@@ -14,13 +14,11 @@ This repository is structured based on the **Embedded Hardware Workshop** and th
 │   │-- 📂 RaspberryPi
 │   │   │-- 📂 sensors
 │   │   │-- 📂 actuators
-│-- 📂 Communication, Cloud
-│   │-- 📂 mqtt
-│   │   │-- 📝 example1.md
-│   │   │-- 📝 example2.md
-│   │-- 📂 Cloud
-│   │   │-- 📝 example1.md
-│   │   │-- 📝 example2.md
+│-- 📂 Cloud
+|   |-- 📘mqtt_subscriber_logger.py
+|   |-- 📘mqtt_to_pubsub_bridge.py
+|   |-- 📘sim_weather_device.py
+|   |-- 📜 workshop_cloud.md
 │-- 📂 End Devices
 │   │-- 📂 Environmental sensors
 │   │-- 📂 Bio sensors
@@ -33,13 +31,12 @@ This repository is structured based on the **Embedded Hardware Workshop** and th
 - **[ESP32](Embedded%20Hardware/ESP32)**
 - **[Raspberry Pi](Embedded%20Hardware/RaspberryPi)**
 
-### Communication & Cloud
+### Cloud
 - **MQTT**
-  - [Example 1](Communication%2C%20Cloud/mqtt/example1.md)
-  - [Example 2](Communication%2C%20Cloud/mqtt/example2.md)
-- **Cloud**
-  - [Example 1](Communication%2C%20Cloud/Cloud/example1.md)
-  - [Example 2](Communication%2C%20Cloud/Cloud/example2.md)
+- [Instruction for Workshop Cloud](Cloud/workshop_cloud.md)
+- [Example: Device Simulator](Cloud/sim_weather_device.md)
+- [Example: Subscribe/logger to local computer](Cloud/mqtt_subscriber_logger.md)
+- [Example: Bridge to Pub/Sub](Cloud/mqtt_to_pubsub_bridge.md)
 
 ### End Devices
 - [Environmental Sensors](End%20Devices/Environmental%20sensors)
