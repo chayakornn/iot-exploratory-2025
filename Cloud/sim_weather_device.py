@@ -3,14 +3,14 @@ import json
 import time
 import random
 
-# === CONFIGURATION ===
-MQTT_BROKER_IP = "202.44.44.233"   # Replace with your MQTT broker IP
-MQTT_BROKER_PORT = 1883            # Replace with your MQTT broker port
-MQTT_TOPIC = "group_42/weather/sensor"
-
 DEVICE_IDS = ["weather_01"]  #, "weather_02", "weather_03", "weather_04", "weather_05"]
-GROUP_ID = "group_42"
+GROUP_ID = "<groupname>"
 PUBLISH_INTERVAL = 5  # seconds
+
+# === CONFIGURATION ===
+MQTT_BROKER_IP = "192.168.0.0"   # Replace with your MQTT broker IP
+MQTT_BROKER_PORT = 1883            # Replace with your MQTT broker port
+MQTT_TOPIC = f"{GROUP_ID}/weather/sensor"
 
 # === SIMULATION FUNCTION ===
 def generate_sensor_data(device_id):

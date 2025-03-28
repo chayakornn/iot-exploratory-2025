@@ -3,13 +3,15 @@ import json
 from google.cloud import pubsub_v1
 import os
 
-# === CONFIGURATION ===
-MQTT_BROKER_IP = "202.44.44.233"  # Replace with your MQTT broker IP
-MQTT_BROKER_PORT = 1883           # Replace with your MQTT broker port
-MQTT_TOPIC = "group_42/weather/sensor"
+GROUP_ID = "<groupname>"
 
-GCP_PROJECT_ID = "iot-exploratory-2025"
-PUBSUB_TOPIC_ID = "group_42-weather-sensor"
+# === CONFIGURATION ===
+MQTT_BROKER_IP = "192.168.0.0"  # Replace with your MQTT broker IP
+MQTT_BROKER_PORT = 1883           # Replace with your MQTT broker port
+MQTT_TOPIC = f"{GROUP_ID}/weather/sensor"
+
+GCP_PROJECT_ID = "<project_name>"
+PUBSUB_TOPIC_ID = f"{GROUP_ID}-weather-sensor"
 
 # Set the path to your Google service account credentials JSON
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./credentials.json"

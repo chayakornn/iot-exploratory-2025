@@ -2,12 +2,14 @@ import paho.mqtt.client as mqtt
 import json
 import os
 
-# === CONFIGURATION ===
-MQTT_BROKER_IP = "202.44.44.233"   # Replace with your MQTT broker IP
-MQTT_BROKER_PORT = 1883            # Replace with your MQTT broker port
-MQTT_TOPIC = "group_42/weather/sensor"
+GROUP_ID = "<groupname>"
 
-OUTPUT_FILE = "received_weather_data.json"
+# === CONFIGURATION ===
+MQTT_BROKER_IP = "192.168.0.0"   # Replace with your MQTT broker IP
+MQTT_BROKER_PORT = 1883            # Replace with your MQTT broker port
+MQTT_TOPIC = f"{GROUP_ID}/weather/sensor"
+
+OUTPUT_FILE = "received_data.json"
 
 # === CALLBACKS ===
 def on_connect(client, userdata, flags, rc):
