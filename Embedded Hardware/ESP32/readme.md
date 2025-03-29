@@ -60,8 +60,8 @@ Explore the examples to learn how to **read sensor data, display information, an
   - [RCWL-0516 Microwave Radar Sensor](#rcwl-0516-microwave-radar-sensor)
   - [DHT11 Temperature and humidity sensor](#dht11-temperature-and-humidity-sensor)
 - [**Peripherals**](#peripherals)
-  - 4x4 Matrix Keypad
-  - 0.91-inch OLED Display
+  - [4x4 Matrix Keypad](#4x4-matrix-keypad)
+  - [0.91-inch OLED Display](#oled-display)
   - LED and Keypad Module
 - [**Actuators**](#actuators)
   - 5V DC Fan
@@ -346,12 +346,65 @@ void loop() {
 - BMP280 Barometer sensor
 - Flex sensor
 
+---
 ### Peripherals
-- 4x4 Matrix Keypad
 
+### 4x4 Matrix Keypad
+
+<img src="https://www.circuitbasics.com/wp-content/uploads/2017/07/Arduino-Keypad-Tutorial-4X4-and-3X4-Keypad-Pin-Diagram-768x730.png" alt="4x4 matrix keypad" width="350"/>  
+
+Image Source: [[Circuitbasics](https://www.circuitbasics.com/wp-content/uploads/2017/07/Arduino-Keypad-Tutorial-4X4-and-3X4-Keypad-Pin-Diagram-768x730.png)]
+
+The **4x4 Matrix Keypad** is a commonly used input device in IoT projects. It features 16 buttons organized in a 4x4 grid, providing a simple interface for user input, such as entering numbers or performing tasks based on keypresses.
+
+**🛠 Wiring (To ESP32)**
+| Keypad Pin | ESP32 Pin |
+|------------|-----------|
+| R1         | GPIO 13   |
+| R2         | GPIO 12   |
+| R3         | GPIO 14   |
+| R4         | GPIO 27   |
+| C1         | GPIO 26   |
+| C2         | GPIO 25   |
+| C3         | GPIO 33   |
+| C4         | GPIO 32   |
+
+**📜 Example Code**
+To interface with the keypad, you'll need the **Keypad** library. Install it via the Arduino Library Manager (`Sketch` → `Include Library` → `Manage Libraries...`), then search for **Keypad** by Community https://github.com/Christ--A/Keypad.
+
+```cpp
+#include <Keypad.h>
+
+const byte ROWS = 4; //four rows
+const byte COLS = 4; //four columns
+//define the cymbols on the buttons of the keypads
+char hexaKeys[ROWS][COLS] = {
+  {'1','2','3','A'},
+  {'4','5','6','B'},
+  {'7','8','9','C'},
+  {'*','0','#','D'}
+};
+byte rowPins[ROWS] = {13, 12, 14, 27}; //connect to the row pinouts of the keypad
+byte colPins[COLS] = {26, 25, 33, 32}; //connect to the column pinouts of the keypad
+
+//initialize an instance of class NewKeypad
+Keypad customKeypad = Keypad( makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS); 
+
+void setup(){
+  Serial.begin(115200);
+}
+  
+void loop(){
+  char customKey = customKeypad.getKey();
+  
+  if (customKey){
+    Serial.println(customKey);
+  }
+}
+```
 ---
 
-### 🖥️ 0.91-inch OLED Display (SSD1306)
+### OLED Display
 
 <img src="https://www.elementzonline.com/image/cache/catalog/data/products/DISPLAY/OLED%20/OLED%200.91%20inch/OLED-0-91-inch-Display-main-550x550w.jpg" alt="0.91-inch OLED Display" width="350">
 
