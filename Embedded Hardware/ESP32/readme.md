@@ -336,11 +336,9 @@ void loop() {
 }
 ```
 
-- LTR390 Ultraviolet sensor
 - BME680 Air quality sensor
 - Analog turbidity sensor
 - MSP430FR2676 Capacitive touch sensor
-- DHT11 Temperature and humidity sensor
 - AO-03 ASAir Oxygen sensor
 - MH-Z19C CO2 sensor
 - GY-906-BCC Non-contact temperature sensor
@@ -350,7 +348,59 @@ void loop() {
 
 ### Peripherals
 - 4x4 Matrix Keypad
-- 0.91-inch OLED display
+
+---
+
+### 🖥️ 0.91-inch OLED Display (SSD1306)
+
+<img src="https://www.elementzonline.com/image/cache/catalog/data/products/DISPLAY/OLED%20/OLED%200.91%20inch/OLED-0-91-inch-Display-main-550x550w.jpg" alt="0.91-inch OLED Display" width="350">
+
+Image Source: [[elementzonline](https://www.elementzonline.com/oled-display-board-0-91-inch-128x32-ssd1306-i2c-iic-serial-4-pin-module)]
+
+The **0.91-inch OLED display** (SSD1306) is a **monochrome, low-power display** that communicates with the ESP32 using **I2C** or **SPI**. It is ideal for displaying sensor data, system status, and graphical elements in IoT applications.
+
+**🛠 Wiring (I2C Mode - Default)**
+| OLED Pin | ESP32 Pin |
+|----------|----------|
+| VCC      | 3.3V     |
+| GND      | GND      |
+| SDA      | GPIO21   |
+| SCL      | GPIO22   |
+
+**📜 Example Code (I2C)**
+```cpp
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 32
+#define OLED_RESET    -1
+#define SCREEN_ADDRESS 0x3C  // I2C address of the display
+
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+void setup() {
+    Serial.begin(115200);
+    if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+        Serial.println(F("SSD1306 allocation failed"));
+        for (;;);
+    }
+    display.clearDisplay();
+    
+    // Display text
+    display.setTextSize(1);
+    display.setTextColor(SSD1306_WHITE);
+    display.setCursor(0, 10);
+    display.println("Hello, OLED!");
+    display.display();
+}
+
+void loop() {
+}
+```
+
+
 - LED and Keypad module
 - NFC MFRC-522 RFID card reader
 
