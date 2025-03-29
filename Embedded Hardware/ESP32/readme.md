@@ -27,6 +27,17 @@ Explore the examples to learn how to **read sensor data, display information, an
 │   │-- BH1750 Light sensor
 │   │-- RCWL-0516 Microwave radar sensor
 │   │-- DHT11 Temperature and humidity sensor
+│-- 📂 peripherals
+│   │-- 4x4 matrix keypad
+│   │-- 0.91-inch OLED display
+│   │-- LED and Keypad module
+│   │-- NFC MFRC-522 RFID card reader
+│-- 📂 actuators
+│   │-- 5V DC fan
+│   │-- Buzzer module
+│   │-- LED traffic light module
+│   │-- Relay board
+│-- 📂 [Extra](#extra)
 │   │-- LTR390 Ultraviolet sensor
 │   │-- BME680 Air quality sensor
 │   │-- Analog turbidity sensor
@@ -37,17 +48,7 @@ Explore the examples to learn how to **read sensor data, display information, an
 │   │-- DS18B20 Liquid temperature sensor
 │   │-- BMP280 Barometer sensor
 │   │-- Flex sensor
-│-- 📂 peripherals
-│   │-- 4x4 matrix keypad
-│   │-- 0.91-inch OLED display
-│   │-- LED and Keypad module
-│   │-- NFC MFRC-522 RFID card reader
-│-- 📂 actuators
-│   │-- 5V DC fan
-│   │-- Buzzer module
-│   │-- LED traffic light module
 │   │-- Mist module
-│   │-- Relay board
 │-- 📜 README.md
 ```
 ---
@@ -57,6 +58,7 @@ Explore the examples to learn how to **read sensor data, display information, an
   - [Potentiometer](#potentiometer)
   - [BH1750 Light Sensor](#bh1750-light-sensor)
   - [RCWL-0516 Microwave Radar Sensor](#rcwl-0516-microwave-radar-sensor)
+  - [DHT11 Temperature and humidity sensor](#dht11-temperature-and-humidity-sensor)
 - [**Peripherals**](#peripherals)
   - 4x4 Matrix Keypad
   - 0.91-inch OLED Display
@@ -65,6 +67,8 @@ Explore the examples to learn how to **read sensor data, display information, an
   - 5V DC Fan
   - Buzzer Module
   - LED Traffic Light Module
+- [**Extra**](#extra)
+  - [LTR390 Ultraviolet sensor](#ltr390-ultraviolet-sensor)
 
 ---
 ### Sensors
@@ -225,7 +229,7 @@ Explore the examples to learn how to **read sensor data, display information, an
   }
 ```
 ---
-#### DHT11 Temperature & Humidity Sensor
+#### DHT11 temperature and humidity sensor
 
   <img src="https://components101.com/sites/default/files/components/DHT11-Sensor.jpg" alt="DHT11" width="350"/>
 
@@ -278,7 +282,7 @@ Explore the examples to learn how to **read sensor data, display information, an
   }
 ```
 ---
-### LTR390 Ultraviolet (UV) Sensor
+### LTR390 Ultraviolet Sensor
 
 <img src="https://static.cytron.io/image/cache/catalog/products/SN-LTR390-UV01/UV-Sensor-C-details-1-800x800.jpeg" alt="LTR390 UV Sensor" width="350"/>  
 
