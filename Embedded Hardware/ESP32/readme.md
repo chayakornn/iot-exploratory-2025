@@ -816,7 +816,7 @@ void loop() {
     delay(1000);
 }
 ```
-
+---
 ### BME680 – Air Quality, Temperature, Pressure, and Humidity Sensor
 
 <img src="https://shop.pimoroni.com/cdn/shop/products/BME680Breakout_1of2_768x768_crop_center.jpg" alt="BME680 air quality, temperature, pressure and humidity sensor" width="350"/>  
@@ -886,6 +886,46 @@ void loop() {
   }
 
   delay(2000);  // Delay before next reading
+}
+```
+---
+### Analog Turbidity Sensor
+
+<img src="https://shop.pimoroni.com/cdn/shop/products/BME680Breakout_1of2_768x768_crop_center.jpg" alt="BME680 air quality, temperature, pressure and humidity sensor" width="350"/>  
+
+Image Source: [[Pimoroni](https://shop.pimoroni.com/cdn/shop/products/BME680Breakout_1of2_768x768_crop_center.jpg)]
+
+https://mm.digikey.com/Volume0/opasdata/d220001/medias/images/2193/SEN0189.jpg
+
+The **Analog Turbidity Sensor** is used to measure the turbidity or clarity of water, which is an important parameter for water quality testing. The sensor provides an **analog output** that corresponds to the turbidity level in the water. Higher turbidity means the water is murkier, while lower turbidity indicates clearer water. This sensor can be used in environmental monitoring projects, such as water pollution detection or water treatment systems.
+
+---
+
+**🛠 Wiring (To ESP32)**  
+| Module Pin  | Connection            | Function                    |
+|-------------|-----------------------|-----------------------------|
+| **VCC**     | 3.3V Power Supply     | Powers the sensor           |
+| **GND**     | ESP32 GND             | Common ground               |
+| **AOUT**    | GPIO 34               | Analog Output (Turbidity)   |
+
+---
+
+**📜 Example Code**
+```cpp
+const int turbidityPin = 34;  // Define the GPIO pin connected to the AOUT pin of the sensor
+int turbidityValue = 0;       // Variable to store turbidity value
+
+void setup() {
+  Serial.begin(115200);       // Initialize serial communication
+  pinMode(turbidityPin, INPUT);  // Set turbidity pin as input
+}
+
+void loop() {
+  turbidityValue = analogRead(turbidityPin);  // Read the analog value from the sensor
+  Serial.print("Turbidity Level: ");
+  Serial.println(turbidityValue);  // Print the turbidity level to Serial Monitor
+
+  delay(1000);  // Delay before next reading
 }
 
 
