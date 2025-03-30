@@ -56,7 +56,7 @@ Explore the examples to learn how to **read sensor data, display information, an
   - [Publish to Several Topics](#publish-to-several-topics)
   - [Subscribe to a Single Topic](#subscribe-to-a-single-topic)
   - [Subscribe to Several Topics](#subscribe-to-several-topics)
-  - [Publish as JSON to MQTT](#example-publish-as-json_object-to-mqtt)
+  - [Publish as JSON to MQTT](#publish-as-json_object-to-mqtt)
 - [**I2C Communication**](#i2c-communication)
 - [**End Device: Environmental Measurement System**](#end-device-environmental-measurement-system)
 
@@ -1237,7 +1237,7 @@ void loop() {
 }
 ```
 ---
-## Example: Publish as JSON object to MQTT
+## Publish as JSON object to MQTT
 
 This example demonstrates how to publish 3 values, packed as a JSON object, to an MQTT topic using an ESP32. The values represent **temperature**, **humidity**, and **pressure**.
 
