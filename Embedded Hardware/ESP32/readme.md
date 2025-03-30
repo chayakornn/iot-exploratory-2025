@@ -742,5 +742,77 @@ void loop() {
   digitalWrite(relayPin, LOW);   // Turn humidifier OFF by deactivating relay
   delay(5000);                   // Keep it OFF for 5 sec
 }
+```
+
+---
+
+### Extra
+
+### 🔢 TM1638 LED and Key Module
+
+<img src="https://cz.lnwfile.com/_/cz/_raw/z2/ef/3l.jpg" alt="TM1638 LED and Key module" width="350">
+
+Image Source: [[Arduino4Pro](https://cz.lnwfile.com/_/cz/_raw/z2/ef/3l.jpg)]
+
+The **TM1638 LED and Key Module** is a versatile component that combines **8 7-segment LED displays**, **8 push buttons**, and **8 LEDs**. It is commonly used in projects that require both display and user input. The module communicates with the ESP32 using an **adapted SPI** interface, combining **MISO** and **MOSI** into a single data line.
+
+---
+
+**🛠 Wiring (To ESP32)**  
+| Module Pin  | Connection              | Function                    |
+|-------------|-------------------------|-----------------------------|
+| **VCC**     | 5V Power Supply         | Powers the module           |
+| **GND**     | ESP32 GND               | Common ground               |
+| **DIO**     | GPIO Pin (e.g., GPIO 23) | Data Pin (combined MISO/MOSI)|
+| **CLK**     | GPIO Pin (e.g., GPIO 22) | Clock Pin for Communication |
+| **STB**     | GPIO Pin (e.g., GPIO 21) | Latch Pin for Communication |
+
+🔹 **Important Notes:**
+- The **DIO** pin is used for data transfer between the ESP32 and the TM1638 module, combining both MISO and MOSI.
+- The **CLK** pin is the clock pin used to synchronize data transfer.
+- The **STB** pin is used to latch the data for updating the display or reading keypad input.
+
+The module contains:
+- **8 7-segment LED displays**: Each can show a digit from 0 to 9.
+- **8 LEDs**: These can be turned on or off for visual feedback.
+- **8 push buttons**: Used for user input.
+
+---
+
+**📜 Example Code**
+```cpp
+#include <TM1638.h>
+
+// Define the pins connected to the TM1638 module
+#define TM1638_DIO    23   // Data pin (combined MISO/MOSI)
+#define TM1638_CLK    22   // Clock pin
+#define TM1638_STB    21   // Strobe pin
+
+// Create an instance of the TM1638 class
+TM1638 tm1638(TM1638_CLK, TM1638_STB, TM1638_DIO);
+
+void setup() {
+  // Initialize the TM1638 module
+  tm1638.begin();
+  tm1638.setBrightness(7);  // Set the brightness of the LEDs
+}
+
+void loop() {
+  // Display a number on the 7-segment display
+  tm1638.displayInt(1234);  // Display the number 1234
+  
+  // Read the keypad input and print the key pressed to Serial Monitor
+  byte key = tm1638.readKey();
+  if (key != 0) {
+    Serial.print("Key Pressed: ");
+    Serial.println(key);
+  }
+
+  // Turn on the first LED
+  tm1638.setLED(0, true);  // Turns on the first LED
+  
+  delay(500);  // Delay for half a second before next update
+}
+
 
 
