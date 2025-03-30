@@ -949,7 +949,7 @@ const char* ssid = "Exploratory";
 const char* password = "!tggs2025";
 const char* mqttServer = "202.44.44.233";
 const int mqttPort = 1883;
-const char* mqttTopic = "TeamName/esp32/example";
+const char* mqttTopic = "group1/test";
 
 // Initialize Wi-Fi and MQTT client
 WiFiClient espClient;
@@ -1016,8 +1016,8 @@ const char* mqttServer = "202.44.44.233";
 const int mqttPort = 1883;
 
 // Topics for publishing messages
-const char* topic1 = "TeamName/esp32/topic1";
-const char* topic2 = "TeamName/esp32/topic2";
+const char* topic1 = "group1/topic1";
+const char* topic2 = "group1/topic2";
 
 // Create a Wi-Fi and MQTT client
 WiFiClient espClient;
@@ -1089,7 +1089,7 @@ const char* password = "!tggs2025";
 // MQTT Broker details
 const char* mqttServer = "202.44.44.233";
 const int mqttPort = 1883;
-const char* subscribeTopic = "Teamname/esp32/example";
+const char* subscribeTopic = "indoor/env_sensors";
 
 // Create a Wi-Fi and MQTT client
 WiFiClient espClient;
@@ -1169,8 +1169,8 @@ const char* password = "!tggs2025";
 // MQTT Broker details
 const char* mqttServer = "!tggs2025";
 const int mqttPort = 1883;
-const char* topic1 = "Teamname/esp32/topic1";
-const char* topic2 = "Teamname/esp32/topic2";
+const char* topic1 = "indoor/env_sensors";
+const char* topic2 = "outdoor/env_sensors";
 
 // Create a Wi-Fi and MQTT client
 WiFiClient espClient;
@@ -1264,7 +1264,7 @@ const char* password = "!tggs2025";
 // MQTT Broker settings
 const char* mqttServer = "202.44.44.233";
 const int mqttPort = 1883;
-const char* mqttTopic = "Teamname/sensors/data";  // The topic to publish to
+const char* mqttTopic = "group1/json";  // The topic to publish to
 
 WiFiClient espClient;
 PubSubClient client(espClient);
