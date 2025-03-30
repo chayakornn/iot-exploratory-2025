@@ -56,7 +56,7 @@ Explore the examples to learn how to **read sensor data, display information, an
   - [Publish to Several Topics](#publish-to-several-topics)
   - [Subscribe to a Single Topic](#subscribe-to-a-single-topic)
   - [Subscribe to Several Topics](#subscribe-to-several-topics)
-  - [Publish as JSON to MQTT](#publish-as-json_object-to-mqtt)
+  - [Publish as JSON to MQTT](#publish-as-json-object-to-mqtt)
 - [**I2C Communication**](#i2c-communication)
 - [**End Device: Environmental Measurement System**](#end-device-environmental-measurement-system)
 
