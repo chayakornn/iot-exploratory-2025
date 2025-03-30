@@ -1033,15 +1033,72 @@ To publish to several topics, you can use multiple **publish()** calls to send d
 
 **📜 Example Code to Publish to Multiple Topics:**
 ```cpp
+#include <WiFi.h>
+#include <PubSubClient.h>
+
+// Wi-Fi credentials
+const char* ssid = "Exploratory";
+const char* password = "!tggs2025";
+
+// MQTT Broker details
+const char* mqttServer = "202.44.44.233";
+const int mqttPort = 1883;
+
+// Topics for publishing messages
+const char* topic1 = "TeamName/esp32/topic1";
+const char* topic2 = "TeamName/esp32/topic2";
+
+// Create a Wi-Fi and MQTT client
+WiFiClient espClient;
+PubSubClient client(espClient);
+
+// Function to reconnect to the MQTT broker
+void reconnect() {
+  while (!client.connected()) {
+    Serial.print("Attempting MQTT connection...");
+    // Attempt to connect
+    if (client.connect("ESP32Client")) {
+      Serial.println("Connected to MQTT broker");
+    } else {
+      Serial.print("Failed to connect. Retrying in 5 seconds...");
+      delay(5000);
+    }
+  }
+}
+
+void setup() {
+  // Initialize serial communication
+  Serial.begin(115200);
+
+  // Connect to Wi-Fi
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to Wi-Fi...");
+  }
+  Serial.println("Connected to Wi-Fi");
+
+  // Set up MQTT client
+  client.setServer(mqttServer, mqttPort);
+
+  // Attempt to connect to MQTT broker
+  while (!client.connected()) {
+    reconnect();
+  }
+}
+
 void loop() {
+  // Ensure the MQTT client remains connected
   if (!client.connected()) {
     reconnect();
   }
   client.loop();
 
   // Publish to multiple topics
-  client.publish("TeamName/esp32/topic1", "Message to Topic 1");
-  client.publish("TeamName/esp32/topic2", "Message to Topic 2");
+  client.publish(topic1, "Message to Topic 1");
+  client.publish(topic2, "Message to Topic 2");
+  Serial.println("Messages published to Topic 1 and Topic 2");
+
   delay(2000);  // Publish every 2 seconds
 }
 ```
@@ -1051,48 +1108,79 @@ To subscribe to a topic, the ESP32 listens for messages sent to that topic and p
 
 **📜 Example Code to Subscribe to a Single Topic:**
 ```cpp
+#include <WiFi.h>
+#include <PubSubClient.h>
+
+// Wi-Fi credentials
+const char* ssid = "Exploratory";
+const char* password = "!tggs2025";
+
+// MQTT Broker details
+const char* mqttServer = "202.44.44.233";
+const int mqttPort = 1883;
 const char* subscribeTopic = "Teamname/esp32/example";
 
-void setup() {
-  Serial.begin(115200);
-  
-  // Connect to Wi-Fi and MQTT broker
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.println("Connecting to WiFi...");
-  }
-  Serial.println("Connected to Wi-Fi");
+// Create a Wi-Fi and MQTT client
+WiFiClient espClient;
+PubSubClient client(espClient);
 
-  client.setServer(mqttServer, mqttPort);
-  client.setCallback(mqttCallback);
-
+// Function to reconnect to the MQTT broker
+void reconnect() {
   while (!client.connected()) {
+    Serial.print("Attempting MQTT connection...");
+    // Attempt to connect
     if (client.connect("ESP32Client")) {
       Serial.println("Connected to MQTT broker");
+      // Subscribe to the topic once connected
       client.subscribe(subscribeTopic);
     } else {
+      Serial.print("Failed to connect. Retrying in 5 seconds...");
       delay(5000);
     }
   }
 }
 
-void loop() {
-  if (!client.connected()) {
-    reconnect();
-  }
-  client.loop();
-}
-
+// Callback function for MQTT message handling
 void mqttCallback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Message received on topic: ");
   Serial.print(topic);
   Serial.print(" - ");
   
+  // Print the received message
   for (int i = 0; i < length; i++) {
     Serial.print((char)payload[i]);
   }
   Serial.println();
+}
+
+void setup() {
+  // Initialize serial communication
+  Serial.begin(115200);
+
+  // Connect to Wi-Fi
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to Wi-Fi...");
+  }
+  Serial.println("Connected to Wi-Fi");
+
+  // Set up MQTT client
+  client.setServer(mqttServer, mqttPort);
+  client.setCallback(mqttCallback);
+
+  // Attempt to connect to MQTT broker
+  while (!client.connected()) {
+    reconnect();
+  }
+}
+
+void loop() {
+  // Ensure the MQTT client remains connected
+  if (!client.connected()) {
+    reconnect();
+  }
+  client.loop();
 }
 ```
 ### Subscribe to Several Topics
@@ -1100,49 +1188,80 @@ To subscribe to several topics, you can call **subscribe()** multiple times for 
 
 **📜 Example Code to Subscribe to Several Topics:**
 ```cpp
+#include <WiFi.h>
+#include <PubSubClient.h>
+
+// Wi-Fi credentials
+const char* ssid = "Exploratory";
+const char* password = "!tggs2025";
+
+// MQTT Broker details
+const char* mqttServer = "!tggs2025";
+const int mqttPort = 1883;
 const char* topic1 = "Teamname/esp32/topic1";
 const char* topic2 = "Teamname/esp32/topic2";
 
-void setup() {
-  Serial.begin(115200);
+// Create a Wi-Fi and MQTT client
+WiFiClient espClient;
+PubSubClient client(espClient);
 
-  // Connect to Wi-Fi and MQTT broker
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.println("Connecting to WiFi...");
-  }
-  Serial.println("Connected to Wi-Fi");
-
-  client.setServer(mqttServer, mqttPort);
-  client.setCallback(mqttCallback);
-
+// Function to reconnect to the MQTT broker
+void reconnect() {
   while (!client.connected()) {
+    Serial.print("Attempting MQTT connection...");
+    // Attempt to connect
     if (client.connect("ESP32Client")) {
       Serial.println("Connected to MQTT broker");
+      // Subscribe to topics once connected
       client.subscribe(topic1);
       client.subscribe(topic2);
     } else {
+      Serial.print("Failed to connect. Retrying in 5 seconds...");
       delay(5000);
     }
   }
 }
 
-void loop() {
-  if (!client.connected()) {
-    reconnect();
-  }
-  client.loop();
-}
-
+// Callback function for MQTT message handling
 void mqttCallback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Message received on topic: ");
   Serial.print(topic);
   Serial.print(" - ");
   
+  // Print the received message
   for (int i = 0; i < length; i++) {
     Serial.print((char)payload[i]);
   }
   Serial.println();
+}
+
+void setup() {
+  // Initialize serial communication
+  Serial.begin(115200);
+
+  // Connect to Wi-Fi
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to Wi-Fi...");
+  }
+  Serial.println("Connected to Wi-Fi");
+
+  // Set up MQTT client
+  client.setServer(mqttServer, mqttPort);
+  client.setCallback(mqttCallback);
+
+  // Attempt to connect to MQTT broker
+  while (!client.connected()) {
+    reconnect();
+  }
+}
+
+void loop() {
+  // Ensure the MQTT client remains connected
+  if (!client.connected()) {
+    reconnect();
+  }
+  client.loop();
 }
 ```
