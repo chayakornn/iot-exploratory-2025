@@ -75,6 +75,11 @@ Explore the examples to learn how to **read sensor data, display information, an
   - [TM1638 LED and Key Module](#tm1638-led-and-key-module)
   - [LTR390 Ultraviolet sensor](#ltr390-ultraviolet-sensor)
 - [**MQTT for ESP32**](#mqtt-for-esp32)
+  - [Wi-Fi Access Point Setup](#wi-fi-access-point-setup)
+  - [Publish to a Single Topic](#publish-to-a-single-topic)
+  - [Publish to Several Topics](#publish-to-several-topics)
+  - [Subscribe to a Single Topic](#subscribe-to-a-single-topic)
+  - [Subscribe to Several Topics](#subscribe-to-several-topics)
   
 ---
 ### Sensors
