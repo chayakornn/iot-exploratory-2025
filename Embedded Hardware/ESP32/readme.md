@@ -57,6 +57,8 @@ Explore the examples to learn how to **read sensor data, display information, an
   - [Subscribe to a Single Topic](#subscribe-to-a-single-topic)
   - [Subscribe to Several Topics](#subscribe-to-several-topics)
 - [**I2C Communication**](#i2c-communication)
+- [**End Device: Environmental Measurement System**](#end-device-environmental-measurement-system)
+
   
 ---
 ### Sensors
@@ -1253,3 +1255,29 @@ I2C (Inter-Integrated Circuit) is a communication protocol commonly used to conn
 - Displays such as **OLED displays**.
 
 I2C is a simple and efficient way to add multiple sensors or devices to your project while minimizing the number of required pins. In Arduino code, I2C devices are typically accessed using libraries like `Wire.h` to handle the communication.
+
+---
+
+### End Device: Environmental Measurement System
+
+The "End Device" is a comprehensive environmental monitoring system designed to collect key atmospheric data for both indoor and outdoor applications. It continuously measures vital parameters, which include:
+
+- **CO2** (ppm)  
+- **O2** (%)  
+- **UV**  
+- **Illuminance** (lux)  
+- **Temperature** (°C)  
+- **Pressure** (hPa)  
+- **Humidity** (%)  
+- **Altitude** (m)  
+- **Gas Resistance** (Ohm)  
+- **PM1** (µg/m³)  
+- **PM2.5** (µg/m³)  
+- **PM10** (µg/m³)  
+
+The end devices are fully operational and are **online**, actively **publishing** real-time data to the MQTT server at `202.44.44.233:1883`. The data is published under the following topics:
+
+- **Indoor Sensors**: `indoor/env_sensors`  
+- **Outdoor Sensors**: `outdoor/env_sensors`  
+
+This allows for remote monitoring and easy integration with IoT platforms for further analysis and control.
