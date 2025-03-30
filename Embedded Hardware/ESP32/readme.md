@@ -67,10 +67,11 @@ Explore the examples to learn how to **read sensor data, display information, an
   - [0.91-inch OLED Display](#oled-display)
   - LED and Keypad Module
 - [**Actuators**](#actuators)
-  - [5V DC Fan](#5v-dc-fan)
   - [Active Buzzer Module](#active-buzzer)
   - [LED Traffic Light Module](#led-traffic-light-module)
   - [Relay module](#relay-module)
+  - [5V DC Fan](#5v-dc-fan)
+  - [5V HUmidifier](#5v-humidifier)
 - [**Extra**](#extra)
   - [LTR390 Ultraviolet sensor](#ltr390-ultraviolet-sensor)
 
@@ -522,7 +523,6 @@ void loop() {
 ```
 
 ### Actuators
-- 5V DC fan
 
 ---
 ### 🔊 Active Buzzer
@@ -701,5 +701,46 @@ void loop() {
 }
 ```
 
-- Mist module
+---
+
+### 💧 5V Humidifier
+
+<img src="https://down-th.img.susercontent.com/file/th-11134207-7r98x-lpgg8tkc3zi695.webp" alt="5V humidifier" width="350">
+
+Image Source: [[Shopee](https://down-th.img.susercontent.com/file/th-11134207-7r98x-lpgg8tkc3zi695.webp)]
+
+A **5V humidifier** is often used to add moisture to the air, which is helpful in various IoT applications, especially those involving environmental control. Like other high-power devices, the humidifier should not be directly controlled by an **ESP32 GPIO pin**, as it does not provide sufficient current. Instead, you should use a **relay module** or a **transistor** to control the humidifier.
+
+---
+
+**🛠 Wiring (To ESP32 via Relay Module)**
+| Humidifier Pin | Connection              | Function                         |
+|----------------|-------------------------|----------------------------------|
+| **VCC**        | 5V Power Supply         | Provides power to the humidifier |
+| **GND**        | ESP32 GND               | Common ground                   |
+| **Relay NO**   | Relay Output Pin        | Connects to the humidifier's power |
+| **Relay IN**   | GPIO Pin (e.g., GPIO 26) | Controls the relay and humidifier |
+
+🔹 **Important Notes:**
+- Use the **Relay Module** to control the humidifier's power by switching its 5V supply.
+- **Relay NO** (Normally Open) pin is used to connect the humidifier’s **VCC** to the 5V supply when the relay is activated.
+- **GPIO 26** is used to control the relay; setting it **HIGH** activates the relay and turns on the humidifier, while setting it **LOW** turns the humidifier off.
+
+---
+
+**📜 Example Code**
+```cpp
+const int relayPin = 26;  // GPIO connected to relay module
+
+void setup() {
+  pinMode(relayPin, OUTPUT);  // Set relay pin as output
+}
+
+void loop() {
+  digitalWrite(relayPin, HIGH);  // Turn humidifier ON by activating relay
+  delay(5000);                   // Keep it ON for 5 sec
+  digitalWrite(relayPin, LOW);   // Turn humidifier OFF by deactivating relay
+  delay(5000);                   // Keep it OFF for 5 sec
+}
+
 
