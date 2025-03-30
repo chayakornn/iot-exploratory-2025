@@ -817,3 +817,75 @@ void loop() {
 }
 ```
 
+### BME680 – Air Quality, Temperature, Pressure, and Humidity Sensor
+
+<img src="https://shop.pimoroni.com/cdn/shop/products/BME680Breakout_1of2_768x768_crop_center.jpg" alt="BME680 air quality, temperature, pressure and humidity sensor" width="350"/>  
+
+Image Source: [[Pimoroni](https://shop.pimoroni.com/cdn/shop/products/BME680Breakout_1of2_768x768_crop_center.jpg)]
+
+
+The **BME680** is a powerful sensor from Bosch that provides **temperature**, **humidity**, **pressure**, and **gas resistance** (air quality) readings. It is widely used in environmental monitoring projects, especially in applications that require measuring indoor air quality. The sensor uses the **I2C** communication protocol, making it easy to interface with the ESP32.
+
+---
+
+**🛠 Wiring (To ESP32)**  
+| Module Pin  | Connection            | Function                    |
+|-------------|-----------------------|-----------------------------|
+| **VCC**     | 3.3V Power Supply     | Powers the sensor           |
+| **GND**     | ESP32 GND             | Common ground               |
+| **SCL**     | GPIO 22               | I2C Clock                   |
+| **SDA**     | GPIO 21               | I2C Data                    |
+
+---
+
+**📜 Example Code**
+```cpp
+#include <Wire.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BME680.h>
+
+// Create an instance of the BME680 sensor
+Adafruit_BME680 bme680;
+
+void setup() {
+  Serial.begin(115200);
+
+  // Initialize I2C communication
+  Wire.begin();
+
+  // Initialize the BME680 sensor
+  if (!bme680.begin()) {
+    Serial.println("Failed to initialize BME680 sensor!");
+    while (1);
+  }
+
+  Serial.println("BME680 sensor initialized.");
+}
+
+void loop() {
+  // Request data from the BME680 sensor
+  if (bme680.performReading()) {
+    // Print the sensor readings to Serial Monitor
+    Serial.print("Temperature: ");
+    Serial.print(bme680.temperature);
+    Serial.print(" °C\t");
+
+    Serial.print("Humidity: ");
+    Serial.print(bme680.humidity);
+    Serial.print(" %\t");
+
+    Serial.print("Pressure: ");
+    Serial.print(bme680.pressure / 100.0);  // Convert to hPa
+    Serial.print(" hPa\t");
+
+    Serial.print("Gas Resistance: ");
+    Serial.print(bme680.gas_resistance);
+    Serial.println(" ohms");
+  } else {
+    Serial.println("Error reading from BME680 sensor.");
+  }
+
+  delay(2000);  // Delay before next reading
+}
+
+
