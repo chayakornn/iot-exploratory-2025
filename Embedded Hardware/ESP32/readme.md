@@ -33,6 +33,7 @@ Explore the examples to learn how to **read sensor data, display information, an
 - [**Peripherals**](#peripherals)
   - [4x4 Matrix Keypad](#4x4-matrix-keypad)
   - [0.91-inch OLED Display](#oled-display)
+  - [MFRC522 RFID card reader](#mfrc522-rfid-card-reader)
 - [**Actuators**](#actuators)
   - [Active Buzzer Module](#active-buzzer)
   - [LED Traffic Light Module](#led-traffic-light-module)
