@@ -1167,7 +1167,7 @@ const char* ssid = "Exploratory";
 const char* password = "!tggs2025";
 
 // MQTT Broker details
-const char* mqttServer = "!tggs2025";
+const char* mqttServer = "202.44.44.233";
 const int mqttPort = 1883;
 const char* topic1 = "indoor/env_sensors";
 const char* topic2 = "outdoor/env_sensors";
