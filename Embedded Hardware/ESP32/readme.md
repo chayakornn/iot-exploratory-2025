@@ -863,11 +863,9 @@ void loop() {
 ---
 ### Analog Turbidity Sensor
 
-<img src="https://mm.digikey.com/Volume0/opasdata/d220001/medias/images/2193/SEN0189.jpg" alt="Analog turbidity sensor" width="350"/>  
+<img src="https://static.cytron.io/image/cache/catalog/New%20Temporary%20Product/90019%20(1)-800x800.jpg" alt="Analog turbidity sensor" width="350"/>  
 
-Image Source: [[Digikey](https://mm.digikey.com/Volume0/opasdata/d220001/medias/images/2193/SEN0189.jpg)]
-
-https://mm.digikey.com/Volume0/opasdata/d220001/medias/images/2193/SEN0189.jpg
+Image Source: [[Digikey](https://static.cytron.io/image/cache/catalog/New%20Temporary%20Product/90019%20(1)-800x800.jpg)]
 
 The **Analog Turbidity Sensor** is used to measure the turbidity or clarity of water, which is an important parameter for water quality testing. The sensor provides an **analog output** that corresponds to the turbidity level in the water. Higher turbidity means the water is murkier, while lower turbidity indicates clearer water. This sensor can be used in environmental monitoring projects, such as water pollution detection or water treatment systems.
 
