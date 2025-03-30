@@ -459,7 +459,6 @@ void loop() {
 ---
 ### MFRC522 RFID card reader
 
-
 <img src="https://raw.githubusercontent.com/playfultechnology/arduino-rfid-MFRC522/master/documentation/MFRC522.jpg" alt="MFRC522 RFID card reader" width="350">
 
 Image Source: [[github/playfultechnology](https://raw.githubusercontent.com/playfultechnology/arduino-rfid-MFRC522/master/documentation/MFRC522.jpg)]
@@ -516,11 +515,47 @@ void loop() {
     }
   }
 }
-
+```
 
 ### Actuators
 - 5V DC fan
-- Buzzer module
+
+---
+### 🔊 3-Pin Active Buzzer
+
+<img src="https://www.botnroll.com/10428-medium_default/active-buzzer-3-5-5-5vdc-for-funduino.jpg" alt="Active buzzer" width="350">
+
+Image Source: [[botnroll](https://www.botnroll.com/10428-medium_default/active-buzzer-3-5-5-5vdc-for-funduino.jpg)]
+
+The **3-pin active buzzer** is a simple sound-generating module that can produce tones when powered. Unlike a passive buzzer, which requires frequency control, an active buzzer generates sound with just a **HIGH** signal.
+
+**🛠 Wiring (To ESP32)**
+| Buzzer Pin | ESP32 Pin |
+|------------|-----------|
+| **SIG**    | GPIO 25   |
+| **VCC**    | 3.3V      |
+| **GND**    | GND       |
+
+
+**📜 Example Code**
+The following example demonstrates how to control the buzzer with an ESP32. The buzzer will beep on and off at 1-second intervals.
+
+```cpp
+const int buzzerPin = 25;  // Define the GPIO pin connected to the buzzer
+
+void setup() {
+  pinMode(buzzerPin, OUTPUT);  // Set the buzzer pin as an output
+}
+
+void loop() {
+  digitalWrite(buzzerPin, HIGH);  // Turn the buzzer ON
+  delay(1000);  // Wait for 1 second
+  digitalWrite(buzzerPin, LOW);  // Turn the buzzer OFF
+  delay(1000);  // Wait for 1 second
+}
+```
+
+
 - LED traffic light module
 - Mist module
 - Relay board
