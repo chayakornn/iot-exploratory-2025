@@ -658,10 +658,9 @@ void loop() {
   digitalWrite(relayPin, LOW);   // Turn relay OFF
   delay(5000);                   // Keep it OFF for 5 sec
 }
-``
+```
 
 ---
-
 ### 🌬️ 5V DC Fan
 
 <img src="https://static.cytron.io/image/cache/catalog/products/FAN-0305-3008/FAN-0305-3008_b-800x800.jpg" alt="5V DC fan" width="350">
