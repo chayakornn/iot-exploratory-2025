@@ -74,7 +74,8 @@ Explore the examples to learn how to **read sensor data, display information, an
 - [**Extra**](#extra)
   - [TM1638 LED and Key Module](#tm1638-led-and-key-module)
   - [LTR390 Ultraviolet sensor](#ltr390-ultraviolet-sensor)
-
+- [**MQTT for ESP32**](#mqtt-for-esp32)
+  
 ---
 ### Sensors
 **Sensors** are devices that detect changes in the environment and convert them into electrical signals that can be processed by a microcontroller or computer. In the context of IoT, sensors play a crucial role in collecting data from the physical world, such as temperature, humidity, motion, light, and more. By integrating sensors into IoT projects, we can gather real-time data and make intelligent decisions based on that information.
@@ -927,5 +928,221 @@ void loop() {
 
   delay(1000);  // Delay before next reading
 }
+```
+---
+### MQTT for ESP32
+The **MQTT** (Message Queuing Telemetry Transport) protocol is a lightweight messaging protocol commonly used for communication between devices in the **Internet of Things (IoT)**. It allows devices to send and receive messages in a **publish/subscribe** (PubSub) model, where devices can publish messages to topics and subscribe to topics to receive messages.
 
+In this example, we will explore how to set up an **ESP32** to publish and subscribe to MQTT topics. This allows the ESP32 to send data to other devices or systems and receive data based on topics of interest.
 
+#### Requirements:
+- **Hardware:**  
+  - ESP32 board
+  - MQTT broker
+  - Wi-Fi network for the ESP32
+
+- **Software:**  
+  - **PubSubClient** library for MQTT communication. Install the library via the Arduino Library Manager.
+
+---
+#### Wi-Fi Access Point Setup
+
+For the duration of the workshop, a **Wi-Fi access point** will be available for all teams to connect to. Please use the provided Wi-Fi credentials to connect your ESP32 and other devices.
+
+- **Wi-Fi SSID:** `Exploratory`
+- **Password:** `!tggs2025`
+
+Once connected, the ESP32 will be able to communicate with the local MQTT server.
+
+#### MQTT Server IP Address
+
+The local **MQTT broker** is hosted on the server with the following **IP address** and **Port number**:
+
+- **MQTT Server IP Address:** `202.44.44.233`
+- **Port:** `1883`
+
+Make sure to configure your ESP32 to connect to this server for publishing and subscribing to topics.
+
+---
+#### Publish to a Single Topic
+
+To publish to a single topic, the ESP32 sends a message to a specific topic, and any device subscribed to that topic will receive the message.
+
+**📜 Example Code to Publish to a Single Topic:**
+```cpp
+#include <WiFi.h>
+#include <PubSubClient.h>
+
+// Wi-Fi and MQTT Broker details
+const char* ssid = "Exploratory";
+const char* password = "!tggs2025";
+const char* mqttServer = "202.44.44.233";
+const int mqttPort = 1883;
+const char* mqttTopic = "TeamName/esp32/example";
+
+// Initialize Wi-Fi and MQTT client
+WiFiClient espClient;
+PubSubClient client(espClient);
+
+void setup() {
+  Serial.begin(115200);
+  
+  // Connect to Wi-Fi
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to WiFi...");
+  }
+  Serial.println("Connected to Wi-Fi");
+
+  // Connect to MQTT broker
+  client.setServer(mqttServer, mqttPort);
+  while (!client.connected()) {
+    if (client.connect("ESP32Client")) {
+      Serial.println("Connected to MQTT broker");
+    } else {
+      delay(5000);
+    }
+  }
+}
+
+void loop() {
+  if (!client.connected()) {
+    reconnect();
+  }
+  client.loop();
+  
+  // Publish message to the topic
+  client.publish(mqttTopic, "Hello from ESP32!");
+  delay(2000);  // Publish every 2 seconds
+}
+
+void reconnect() {
+  while (!client.connected()) {
+    if (client.connect("ESP32Client")) {
+      Serial.println("Reconnected to MQTT broker");
+    } else {
+      delay(5000);
+    }
+  }
+}
+```
+#### Publish to Several Topics
+
+To publish to several topics, you can use multiple **publish()** calls to send data to different topics.
+
+**📜 Example Code to Publish to Multiple Topics:**
+```cpp
+void loop() {
+  if (!client.connected()) {
+    reconnect();
+  }
+  client.loop();
+
+  // Publish to multiple topics
+  client.publish("TeamName/esp32/topic1", "Message to Topic 1");
+  client.publish("TeamName/esp32/topic2", "Message to Topic 2");
+  delay(2000);  // Publish every 2 seconds
+}
+```
+### Subscribe to a Single Topic
+
+To subscribe to a topic, the ESP32 listens for messages sent to that topic and processes them when they arrive.
+
+**📜 Example Code to Subscribe to a Single Topic:**
+```cpp
+const char* subscribeTopic = "Teamname/esp32/example";
+
+void setup() {
+  Serial.begin(115200);
+  
+  // Connect to Wi-Fi and MQTT broker
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to WiFi...");
+  }
+  Serial.println("Connected to Wi-Fi");
+
+  client.setServer(mqttServer, mqttPort);
+  client.setCallback(mqttCallback);
+
+  while (!client.connected()) {
+    if (client.connect("ESP32Client")) {
+      Serial.println("Connected to MQTT broker");
+      client.subscribe(subscribeTopic);
+    } else {
+      delay(5000);
+    }
+  }
+}
+
+void loop() {
+  if (!client.connected()) {
+    reconnect();
+  }
+  client.loop();
+}
+
+void mqttCallback(char* topic, byte* payload, unsigned int length) {
+  Serial.print("Message received on topic: ");
+  Serial.print(topic);
+  Serial.print(" - ");
+  
+  for (int i = 0; i < length; i++) {
+    Serial.print((char)payload[i]);
+  }
+  Serial.println();
+}
+```
+### Subscribe to Several Topics
+To subscribe to several topics, you can call **subscribe()** multiple times for each topic.
+
+**📜 Example Code to Subscribe to Several Topics:**
+```cpp
+const char* topic1 = "Teamname/esp32/topic1";
+const char* topic2 = "Teamname/esp32/topic2";
+
+void setup() {
+  Serial.begin(115200);
+
+  // Connect to Wi-Fi and MQTT broker
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to WiFi...");
+  }
+  Serial.println("Connected to Wi-Fi");
+
+  client.setServer(mqttServer, mqttPort);
+  client.setCallback(mqttCallback);
+
+  while (!client.connected()) {
+    if (client.connect("ESP32Client")) {
+      Serial.println("Connected to MQTT broker");
+      client.subscribe(topic1);
+      client.subscribe(topic2);
+    } else {
+      delay(5000);
+    }
+  }
+}
+
+void loop() {
+  if (!client.connected()) {
+    reconnect();
+  }
+  client.loop();
+}
+
+void mqttCallback(char* topic, byte* payload, unsigned int length) {
+  Serial.print("Message received on topic: ");
+  Serial.print(topic);
+  Serial.print(" - ");
+  
+  for (int i = 0; i < length; i++) {
+    Serial.print((char)payload[i]);
+  }
+  Serial.println();
+}
+```
