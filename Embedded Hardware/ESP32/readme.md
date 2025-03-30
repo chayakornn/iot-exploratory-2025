@@ -376,10 +376,6 @@ void setup() {
 void loop() {
 }
 ```
-
-
-- LED and Keypad module
-
 ---
 ### MFRC522 RFID card reader
 
