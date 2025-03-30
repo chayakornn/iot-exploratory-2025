@@ -65,7 +65,6 @@ Explore the examples to learn how to **read sensor data, display information, an
 - [**Peripherals**](#peripherals)
   - [4x4 Matrix Keypad](#4x4-matrix-keypad)
   - [0.91-inch OLED Display](#oled-display)
-  - LED and Keypad Module
 - [**Actuators**](#actuators)
   - [Active Buzzer Module](#active-buzzer)
   - [LED Traffic Light Module](#led-traffic-light-module)
@@ -73,6 +72,7 @@ Explore the examples to learn how to **read sensor data, display information, an
   - [5V DC Fan](#5v-dc-fan)
   - [5V HUmidifier](#5v-humidifier)
 - [**Extra**](#extra)
+  - [TM1638 LED and Key Module](#tm1638-led-and-key-module)
   - [LTR390 Ultraviolet sensor](#ltr390-ultraviolet-sensor)
 
 ---
@@ -285,60 +285,6 @@ Explore the examples to learn how to **read sensor data, display information, an
           Serial.println(DHT11::getErrorString(result));
       }
   }
-```
----
-### LTR390 Ultraviolet Sensor
-
-<img src="https://static.cytron.io/image/cache/catalog/products/SN-LTR390-UV01/UV-Sensor-C-details-1-800x800.jpeg" alt="LTR390 UV Sensor" width="350"/>  
-
-Image Source: [[Cytron](https://th.cytron.io/p-digital-ltr390-ultraviolet-uv-sensor?r=1&language=en-gb&gad_source=1&gclid=Cj0KCQjwtJ6_BhDWARIsAGanmKcKcjH1q0FQvHI0SktUjRc4RY_cX3QgSDuyfTgwjSHe_8Vej9zLlgAaAqh2EALw_wcB)]
-
-The **LTR390** is a **UV and ambient light sensor** that communicates using the **I2C protocol**. It is useful for detecting **UV radiation levels** in applications such as environmental monitoring, UV index measurement, and smart wearables.  
-
-**🛠 Wiring (ESP32 - LTR390)**  
-
-| **LTR390 Pin** | **ESP32 Pin** |
-|--------------|--------------|
-| VCC         | 3.3V         |
-| GND         | GND          |
-| SDA         | GPIO 21 (SDA) |
-| SCL         | GPIO 22 (SCL) |
-
-
-**📜 Example Code**  
-
-```cpp
-#include <Wire.h>
-#include <Adafruit_LTR390.h>
-
-Adafruit_LTR390 ltr = Adafruit_LTR390();
-
-void setup() {
-    Serial.begin(115200);
-    Wire.begin(); // Initialize I2C
-
-    if (!ltr.begin()) {
-        Serial.println("Error: LTR390 sensor not found. Check wiring!");
-        while (1); // Halt execution
-    }
-
-    Serial.println("LTR390 sensor initialized!");
-    ltr.setMode(LTR390_MODE_UVS); // Set to UVS mode
-    ltr.setGain(LTR390_GAIN_3);   // Set gain
-    ltr.setResolution(LTR390_RESOLUTION_16BIT); // Set resolution
-}
-
-void loop() {
-    if (ltr.newDataAvailable()) {
-        uint32_t uvData = ltr.readUVS();
-        Serial.print("UV Light Level: ");
-        Serial.println(uvData);
-    } else {
-        Serial.println("No new UV data available.");
-    }
-
-    delay(1000);
-}
 ```
 
 - BME680 Air quality sensor
@@ -816,4 +762,58 @@ void loop() {
 }
 ```
 
+---
+### LTR390 Ultraviolet Sensor
+
+<img src="https://static.cytron.io/image/cache/catalog/products/SN-LTR390-UV01/UV-Sensor-C-details-1-800x800.jpeg" alt="LTR390 UV Sensor" width="350"/>  
+
+Image Source: [[Cytron](https://th.cytron.io/p-digital-ltr390-ultraviolet-uv-sensor?r=1&language=en-gb&gad_source=1&gclid=Cj0KCQjwtJ6_BhDWARIsAGanmKcKcjH1q0FQvHI0SktUjRc4RY_cX3QgSDuyfTgwjSHe_8Vej9zLlgAaAqh2EALw_wcB)]
+
+The **LTR390** is a **UV and ambient light sensor** that communicates using the **I2C protocol**. It is useful for detecting **UV radiation levels** in applications such as environmental monitoring, UV index measurement, and smart wearables.  
+
+**🛠 Wiring (ESP32 - LTR390)**  
+
+| **LTR390 Pin** | **ESP32 Pin** |
+|--------------|--------------|
+| VCC         | 3.3V         |
+| GND         | GND          |
+| SDA         | GPIO 21 (SDA) |
+| SCL         | GPIO 22 (SCL) |
+
+
+**📜 Example Code**  
+
+```cpp
+#include <Wire.h>
+#include <Adafruit_LTR390.h>
+
+Adafruit_LTR390 ltr = Adafruit_LTR390();
+
+void setup() {
+    Serial.begin(115200);
+    Wire.begin(); // Initialize I2C
+
+    if (!ltr.begin()) {
+        Serial.println("Error: LTR390 sensor not found. Check wiring!");
+        while (1); // Halt execution
+    }
+
+    Serial.println("LTR390 sensor initialized!");
+    ltr.setMode(LTR390_MODE_UVS); // Set to UVS mode
+    ltr.setGain(LTR390_GAIN_3);   // Set gain
+    ltr.setResolution(LTR390_RESOLUTION_16BIT); // Set resolution
+}
+
+void loop() {
+    if (ltr.newDataAvailable()) {
+        uint32_t uvData = ltr.readUVS();
+        Serial.print("UV Light Level: ");
+        Serial.println(uvData);
+    } else {
+        Serial.println("No new UV data available.");
+    }
+
+    delay(1000);
+}
+```
 
