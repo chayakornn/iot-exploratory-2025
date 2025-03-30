@@ -45,7 +45,7 @@ Explore the examples to learn how to **read sensor data, display information, an
   - [BME680 Air Quality, Temperature, Pressure, and Humidity Sensor](#bme680-air-quality-temperature-pressure-and-humidity-sensor)
   - [Analog turbidity sensor](#analog-turbidity-sensor)
   - [AO-03 ASAir Oxygen sensor](./O2_Sensor)
-  - MH-Z19C CO2 sensor
+  - [MH-Z19C CO2 sensor](./CO2_Sensor)
   - GY-906-BCC Non-contact temperature sensor
   - MSP430FR2676 Capacitive touch sensor
   - DS18B20 Liquid temperature sensor
