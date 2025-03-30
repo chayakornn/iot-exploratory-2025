@@ -46,9 +46,9 @@ Explore the examples to learn how to **read sensor data, display information, an
   - [Analog turbidity sensor](#analog-turbidity-sensor)
   - [AO-03 ASAir Oxygen sensor](./O2_Sensor)
   - [MH-Z19C CO2 sensor](./CO2_Sensor)
-  - GY-906-BCC Non-contact temperature sensor
-  - MSP430FR2676 Capacitive touch sensor
-  - DS18B20 Liquid temperature sensor
+  - [GY-906-BCC Non-contact temperature sensor](./GY906_Temperature_Sensor)
+  - [MSP430FR2676 Capacitive touch sensor](https://th.rs-online.com/web/p/sensor-development-tools/2659748)
+  - [DS18B20 Liquid temperature sensor](https://wiki.dfrobot.com/Waterproof_DS18B20_Digital_Temperature_Sensor__SKU_DFR0198_)
 - [**MQTT for ESP32**](#mqtt-for-esp32)
   - [Wi-Fi Access Point Setup](#wi-fi-access-point-setup)
   - [Publish to a Single Topic](#publish-to-a-single-topic)
