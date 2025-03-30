@@ -14,6 +14,8 @@ Here is the pinout diagram for the **ESP32 DevKit V1 (30-pin version):**
 
 *Image Source: [https://lastminuteengineers.com](https://lastminuteengineers.com)*
 
+*Note: The on-board LED is at pin GPIO2*
+
 ## Sensors, Peripherals and Actuators
 
 This section covers some **hardware components** used with ESP32 in this workshop, including **sensors** for data collection, **peripherals** for interfacing, and **actuators** for controlling external devices. These components form the backbone of IoT applications, enabling interaction with the physical world.  
