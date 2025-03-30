@@ -56,6 +56,7 @@ Explore the examples to learn how to **read sensor data, display information, an
   - [Publish to Several Topics](#publish-to-several-topics)
   - [Subscribe to a Single Topic](#subscribe-to-a-single-topic)
   - [Subscribe to Several Topics](#subscribe-to-several-topics)
+  - [Publish as JSON to MQTT](#example-publish-as-json_object-to-mqtt)
 - [**I2C Communication**](#i2c-communication)
 - [**End Device: Environmental Measurement System**](#end-device-environmental-measurement-system)
 
@@ -1235,6 +1236,86 @@ void loop() {
   client.loop();
 }
 ```
+---
+## Example: Publish as JSON object to MQTT
+
+This example demonstrates how to publish 3 values, packed as a JSON object, to an MQTT topic using an ESP32. The values represent **temperature**, **humidity**, and **pressure**.
+
+### Prerequisites:
+- Install the [ArduinoJson](https://github.com/bblanchon/ArduinoJson) library for JSON handling.
+- Install the [PubSubClient](https://github.com/knolleary/pubsubclient) library for MQTT communication.
+
+### Required Libraries:
+- **WiFi**
+- **PubSubClient** (for MQTT)
+- **ArduinoJson** (for JSON creation)
+
+### Example Code:
+
+```cpp
+#include <WiFi.h>
+#include <PubSubClient.h>
+#include <ArduinoJson.h>  // Include the Arduino JSON library
+
+// Wi-Fi credentials
+const char* ssid = "Exploratory";
+const char* password = "!tggs2025";
+
+// MQTT Broker settings
+const char* mqttServer = "202.44.44.233";
+const int mqttPort = 1883;
+const char* mqttTopic = "Teamname/sensors/data";  // The topic to publish to
+
+WiFiClient espClient;
+PubSubClient client(espClient);
+
+void setup() {
+  Serial.begin(115200);
+
+  // Connect to Wi-Fi
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to WiFi...");
+  }
+  Serial.println("Connected to Wi-Fi");
+
+  // Connect to MQTT broker
+  client.setServer(mqttServer, mqttPort);
+  while (!client.connected()) {
+    if (client.connect("ESP32Client", mqttUser, mqttPassword)) {
+      Serial.println("Connected to MQTT broker");
+    } else {
+      Serial.print("Failed to connect, retrying...");
+      delay(5000);
+    }
+  }
+}
+
+void loop() {
+  // Create a JSON object
+  StaticJsonDocument<200> doc;
+
+  // Add sensor data to the JSON object
+  doc["temperature"] = 25.5;  // Example: Temperature in Celsius
+  doc["humidity"] = 60;       // Example: Humidity in percentage
+  doc["pressure"] = 1015;     // Example: Pressure in hPa
+
+  // Serialize the JSON object to a string
+  char jsonBuffer[512];
+  serializeJson(doc, jsonBuffer);
+
+  // Publish the JSON string to MQTT topic
+  if (client.publish(mqttTopic, jsonBuffer)) {
+    Serial.println("Data published successfully");
+  } else {
+    Serial.println("Failed to publish data");
+  }
+
+  delay(2000);  // Publish every 2 seconds
+}
+```
+
 ---
 ### I2C Communication
 
