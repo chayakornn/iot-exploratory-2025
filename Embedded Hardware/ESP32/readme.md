@@ -605,6 +605,59 @@ void loop() {
 }
 ```
 
+---
+
+### ⚡ Relay Module (1-Channel & 2-Channel)
+
+<img src="https://m.media-amazon.com/images/I/61blaLDLOzL._SX522_.jpg" alt="Relay  module" width="350">
+
+Image Source: [[Amazon](https://m.media-amazon.com/images/I/61blaLDLOzL._SX522_.jpg)]
+
+A **relay module** allows an ESP32 to control high-power electrical devices like lamps, fans, or appliances using a low-power signal. It acts as an electrically operated switch.
+
+#### 🔹 How It Works
+- When the **IN** pin is set **HIGH**, the relay **activates**, connecting **COM** to **NO**.
+- When the **IN** pin is set **LOW**, the relay **deactivates**, connecting **COM** to **NC**.
+- **NC (Normally Closed)** → Default **closed** circuit; current flows when the relay is **OFF**.
+- **NO (Normally Open)** → Default **open** circuit; current flows when the relay is **ON**.
+
+### 🛠 Relay Module Variants
+#### **1-Channel Relay Module**
+- **Input side (low voltage control):** `VCC`, `GND`, `IN`
+- **Output side (high voltage switching):** `GND`, `NC`, `NO`
+
+#### **2-Channel Relay Module**
+- **Input side (low voltage control):** `VCC`, `GND`, `IN1`, `IN2`
+- **Output side (high voltage switching):** Two sets of `GND`, `NC`, `NO` for each relay.
+
+---
+
+**🛠 Wiring (To ESP32)**
+| Relay Pin | ESP32 Pin  | Function |
+|-----------|-----------|----------|
+| **VCC**   | 3.3V      | Power Supply |
+| **GND**   | GND       | Ground |
+| **IN** *(1-Channel)*  | GPIO 26 | Control Signal |
+| **IN1** *(2-Channel)* | GPIO 26 | Control Relay 1 |
+| **IN2** *(2-Channel)* | GPIO 27 | Control Relay 2 |
+
+---
+
+**📜 Example Code (1-Channel)**
+```cpp
+const int relayPin = 26;  // Relay control pin
+
+void setup() {
+  pinMode(relayPin, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(relayPin, HIGH);  // Turn relay ON
+  delay(5000);                   // Keep it ON for 5 sec
+  digitalWrite(relayPin, LOW);   // Turn relay OFF
+  delay(5000);                   // Keep it OFF for 5 sec
+}
+
 
 - Mist module
 - Relay board
