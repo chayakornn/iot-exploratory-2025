@@ -863,9 +863,9 @@ void loop() {
 ---
 ### Analog Turbidity Sensor
 
-<img src="https://shop.pimoroni.com/cdn/shop/products/BME680Breakout_1of2_768x768_crop_center.jpg" alt="BME680 air quality, temperature, pressure and humidity sensor" width="350"/>  
+<img src="https://mm.digikey.com/Volume0/opasdata/d220001/medias/images/2193/SEN0189.jpg" alt="Analog turbidity sensor" width="350"/>  
 
-Image Source: [[Pimoroni](https://shop.pimoroni.com/cdn/shop/products/BME680Breakout_1of2_768x768_crop_center.jpg)]
+Image Source: [[Digikey](https://mm.digikey.com/Volume0/opasdata/d220001/medias/images/2193/SEN0189.jpg)]
 
 https://mm.digikey.com/Volume0/opasdata/d220001/medias/images/2193/SEN0189.jpg
 
