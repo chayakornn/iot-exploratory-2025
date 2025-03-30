@@ -22,38 +22,6 @@ This section covers some **hardware components** used with ESP32 in this worksho
 
 Explore the examples to learn how to **read sensor data, display information, and control actuators** using ESP32! 🚀  
 
-```
-📂 ESP32
-│-- 📂 [Sensors](#sensors)
-│   │-- Digital switch
-│   │-- Potentiometer
-│   │-- BH1750 Light sensor
-│   │-- RCWL-0516 Microwave radar sensor
-│   │-- DHT11 Temperature and humidity sensor
-│-- 📂 peripherals
-│   │-- 4x4 matrix keypad
-│   │-- 0.91-inch OLED display
-│   │-- LED and Keypad module
-│   │-- NFC MFRC-522 RFID card reader
-│-- 📂 actuators
-│   │-- 5V DC fan
-│   │-- Buzzer module
-│   │-- LED traffic light module
-│   │-- Relay board
-│-- 📂 [Extra](#extra)
-│   │-- LTR390 Ultraviolet sensor
-│   │-- BME680 Air quality sensor
-│   │-- Analog turbidity sensor
-│   │-- MSP430FR2676 Capacitive touch sensor
-│   │-- AO-03 ASAir Oxygen sensor
-│   │-- MH-Z19C CO2 sensor
-│   │-- GY-906-BCC Non-contact temperature sensor
-│   │-- DS18B20 Liquid temperature sensor
-│   │-- BMP280 Barometer sensor
-│   │-- Flex sensor
-│   │-- Mist module
-│-- 📜 README.md
-```
 ---
 ## 📖 Table of Contents
 - [**Sensors**](#sensors)
@@ -74,6 +42,13 @@ Explore the examples to learn how to **read sensor data, display information, an
 - [**Extra**](#extra)
   - [TM1638 LED and Key Module](#tm1638-led-and-key-module)
   - [LTR390 Ultraviolet sensor](#ltr390-ultraviolet-sensor)
+  - [BME680 Air Quality, Temperature, Pressure, and Humidity Sensor](#bme680-air-quality-temperature-pressure-and-humidity-sensor)
+  - [Analog turbidity sensor](#analog-turbidity-sensor)
+  - AO-03 ASAir Oxygen sensor
+  - MH-Z19C CO2 sensor
+  - GY-906-BCC Non-contact temperature sensor
+  - MSP430FR2676 Capacitive touch sensor
+  - DS18B20 Liquid temperature sensor
 - [**MQTT for ESP32**](#mqtt-for-esp32)
   - [Wi-Fi Access Point Setup](#wi-fi-access-point-setup)
   - [Publish to a Single Topic](#publish-to-a-single-topic)
@@ -293,16 +268,6 @@ Explore the examples to learn how to **read sensor data, display information, an
       }
   }
 ```
-
-- BME680 Air quality sensor
-- Analog turbidity sensor
-- MSP430FR2676 Capacitive touch sensor
-- AO-03 ASAir Oxygen sensor
-- MH-Z19C CO2 sensor
-- GY-906-BCC Non-contact temperature sensor
-- DS18B20 Liquid temperature sensor
-- BMP280 Barometer sensor
-- Flex sensor
 
 ---
 ### Peripherals
@@ -824,7 +789,7 @@ void loop() {
 }
 ```
 ---
-### BME680 – Air Quality, Temperature, Pressure, and Humidity Sensor
+### BME680 Air Quality, Temperature, Pressure, and Humidity Sensor
 
 <img src="https://shop.pimoroni.com/cdn/shop/products/BME680Breakout_1of2_768x768_crop_center.jpg" alt="BME680 air quality, temperature, pressure and humidity sensor" width="350"/>  
 
