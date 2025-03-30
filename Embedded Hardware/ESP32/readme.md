@@ -272,6 +272,7 @@ Explore the examples to learn how to **read sensor data, display information, an
 
 ---
 ### Peripherals
+Peripherals expand the ESP32’s capabilities by providing input and output interfaces. Devices like keypads, OLED displays, and RFID readers allow users to interact with the system, display information, and read data from external sources.
 
 ### 4x4 Matrix Keypad
 
@@ -438,6 +439,7 @@ void loop() {
 ```
 
 ### Actuators
+Actuators enable the ESP32 to control physical devices. Components like buzzers, relays, and fans allow automation, sound generation, and switching of high-power devices, making them essential for interactive and smart applications.
 
 ---
 ### 🔊 Active Buzzer
