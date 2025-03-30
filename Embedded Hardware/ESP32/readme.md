@@ -39,7 +39,7 @@ Explore the examples to learn how to **read sensor data, display information, an
   - [LED Traffic Light Module](#led-traffic-light-module)
   - [Relay module](#relay-module)
   - [5V DC Fan](#5v-dc-fan)
-  - [5V HUmidifier](#5v-humidifier)
+  - [5V Humidifier](#5v-humidifier)
 - [**Extra**](#extra)
   - [TM1638 LED and Key Module](#tm1638-led-and-key-module)
   - [LTR390 Ultraviolet sensor](#ltr390-ultraviolet-sensor)
