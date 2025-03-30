@@ -80,6 +80,7 @@ Explore the examples to learn how to **read sensor data, display information, an
   - [Publish to Several Topics](#publish-to-several-topics)
   - [Subscribe to a Single Topic](#subscribe-to-a-single-topic)
   - [Subscribe to Several Topics](#subscribe-to-several-topics)
+- [**I2C Communication**](#i2c-communication)
   
 ---
 ### Sensors
@@ -1270,3 +1271,23 @@ void loop() {
   client.loop();
 }
 ```
+---
+### I2C Communication
+
+I2C (Inter-Integrated Circuit) is a communication protocol commonly used to connect sensors and peripherals to microcontrollers, including the ESP32. It is a two-wire protocol that allows multiple devices to communicate with a single microcontroller using only two pins: **SDA (Serial Data)** and **SCL (Serial Clock)**.
+
+#### Key Features:
+- **Two-wire communication**: I2C only requires two wires for communication between the master (ESP32) and multiple slave devices.
+- **Address-based communication**: Each I2C device has a unique address, allowing multiple devices to share the same data bus.
+- **Master-slave model**: The microcontroller (master) controls the communication, and sensors or peripherals (slaves) respond to the master’s requests.
+
+#### Wiring:
+- **SDA** (Data Line) connects to GPIO21 on the ESP32 by default.
+- **SCL** (Clock Line) connects to GPIO22 on the ESP32 by default.
+- **VCC** and **GND** connect to the respective power and ground pins of the I2C devices.
+
+#### Example Devices Using I2C:
+- Sensors like the **BH1750 Light sensor**, **BME680 Air Quality Sensor**, and **GY-906 Temperature Sensor**.
+- Displays such as **OLED displays**.
+
+I2C is a simple and efficient way to add multiple sensors or devices to your project while minimizing the number of required pins. In Arduino code, I2C devices are typically accessed using libraries like `Wire.h` to handle the communication.
