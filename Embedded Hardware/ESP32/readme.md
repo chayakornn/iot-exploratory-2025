@@ -455,7 +455,68 @@ void loop() {
 
 
 - LED and Keypad module
-- NFC MFRC-522 RFID card reader
+
+---
+### MFRC522 RFID card reader
+
+
+<img src="https://raw.githubusercontent.com/playfultechnology/arduino-rfid-MFRC522/master/documentation/MFRC522.jpg" alt="MFRC522 RFID card reader" width="350">
+
+Image Source: [[github/playfultechnology](https://raw.githubusercontent.com/playfultechnology/arduino-rfid-MFRC522/master/documentation/MFRC522.jpg)]
+
+The **MFRC522** module is an RFID (Radio Frequency Identification) reader that communicates with a microcontroller via **SPI**. It is commonly used in access control systems, ticketing, and IoT projects requiring identification or authentication.
+
+**🛠 Wiring (To ESP32)**
+| MFRC522 Pin | ESP32 Pin |
+|-------------|-----------|
+| SDA         | GPIO 5    |
+| SCK         | GPIO 18   |
+| MOSI        | GPIO 23   |
+| MISO        | GPIO 19   |
+| IRQ         |  -        |
+| GND         | GND      |
+| RST         | GPIO 22   |
+| 3.3V        | 3.3V     |
+
+#### 📜 Example Code
+To interface with the **MFRC522** module, you will need the **MFRC522** library. Install it via the Arduino Library Manager (`Sketch` → `Include Library` → `Manage Libraries...`), then search for **MFRC522** by githubcommunity.
+
+```cpp
+#include <SPI.h>
+#include <MFRC522.h>
+
+#define SS_PIN 5    // Slave Select pin
+#define RST_PIN 22  // Reset pin
+
+MFRC522 mfrc522(SS_PIN, RST_PIN);  // Create MFRC522 instance
+
+void setup() {
+  Serial.begin(115200);  // Initialize serial communication
+  SPI.begin();  // Initialize SPI bus
+  mfrc522.PCD_Init();  // Initialize MFRC522 reader
+
+  Serial.println("Place an RFID card or tag near the reader.");
+}
+
+void loop() {
+  // Look for new cards
+  if (mfrc522.PICC_IsNewCardPresent()) {
+    // Select one of the cards
+    if (mfrc522.PICC_ReadCardSerial()) {
+      Serial.print("UID tag :");
+      
+      // Read the UID of the card
+      for (byte i = 0; i < mfrc522.uid.size; i++) {
+        Serial.print(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " ");
+        Serial.print(mfrc522.uid.uidByte[i], HEX);
+      }
+      Serial.println();
+
+      mfrc522.PICC_HaltA();  // Halt the PICC (RFID card)
+    }
+  }
+}
+
 
 ### Actuators
 - 5V DC fan
