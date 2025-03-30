@@ -558,7 +558,53 @@ void loop() {
 }
 ```
 
+---
 
-- LED traffic light module
+### 🚦 LED Traffic Light Module
+
+<img src="https://dm.lnwfile.com/_/dm/_raw/yv/l1/qm.jpg" alt="LED traffic light module" width="350">
+
+Image Source: [[genlogic](https://dm.lnwfile.com/_/dm/_raw/yv/l1/qm.jpg)]
+
+The **LED Traffic Light Module** simulates a standard traffic light with three LEDs (**Red, Yellow, and Green**). It can be used to demonstrate traffic light sequences or other signaling applications.
+
+**🛠 Wiring (To ESP32)**
+| Module Pin | ESP32 Pin  | Function |
+|------------|-----------|----------|
+| **G**      | GPIO 12   | Green LED Control |
+| **Y**      | GPIO 13   | Yellow LED Control |
+| **R**      | GPIO 14   | Red LED Control |
+| **GND**    | GND       | Ground |
+
+**📜 Example Code**
+This example simulates a basic traffic light cycle.
+
+```cpp
+const int greenLED = 12;   // Green LED pin
+const int yellowLED = 13;  // Yellow LED pin
+const int redLED = 14;     // Red LED pin
+
+void setup() {
+  pinMode(greenLED, OUTPUT);
+  pinMode(yellowLED, OUTPUT);
+  pinMode(redLED, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(greenLED, HIGH);  // Green light ON
+  delay(5000);                   // Wait 5 seconds
+  digitalWrite(greenLED, LOW);
+
+  digitalWrite(yellowLED, HIGH);  // Yellow light ON
+  delay(2000);                    // Wait 2 seconds
+  digitalWrite(yellowLED, LOW);
+
+  digitalWrite(redLED, HIGH);     // Red light ON
+  delay(5000);                    // Wait 5 seconds
+  digitalWrite(redLED, LOW);
+}
+```
+
+
 - Mist module
 - Relay board
