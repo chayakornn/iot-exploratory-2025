@@ -67,9 +67,10 @@ Explore the examples to learn how to **read sensor data, display information, an
   - [0.91-inch OLED Display](#oled-display)
   - LED and Keypad Module
 - [**Actuators**](#actuators)
-  - 5V DC Fan
-  - Buzzer Module
-  - LED Traffic Light Module
+  - [5V DC Fan](#5v-dc-fan)
+  - [Active Buzzer Module](#active-buzzer)
+  - [LED Traffic Light Module](#led-traffic-light-module)
+  - [Relay module](#relay-module)
 - [**Extra**](#extra)
   - [LTR390 Ultraviolet sensor](#ltr390-ultraviolet-sensor)
 
@@ -524,7 +525,7 @@ void loop() {
 - 5V DC fan
 
 ---
-### 🔊 3-Pin Active Buzzer
+### 🔊 Active Buzzer
 
 <img src="https://www.botnroll.com/10428-medium_default/active-buzzer-3-5-5-5vdc-for-funduino.jpg" alt="Active buzzer" width="350">
 
@@ -607,7 +608,7 @@ void loop() {
 
 ---
 
-### ⚡ Relay Module (1-Channel & 2-Channel)
+### ⚡ Relay Module
 
 <img src="https://m.media-amazon.com/images/I/61blaLDLOzL._SX522_.jpg" alt="Relay  module" width="350">
 
@@ -657,7 +658,49 @@ void loop() {
   digitalWrite(relayPin, LOW);   // Turn relay OFF
   delay(5000);                   // Keep it OFF for 5 sec
 }
+``
 
+---
+
+### 🌬️ 5V DC Fan
+
+<img src="https://static.cytron.io/image/cache/catalog/products/FAN-0305-3008/FAN-0305-3008_b-800x800.jpg" alt="5V DC fan" width="350">
+
+Image Source: [[Cytron](https://static.cytron.io/image/cache/catalog/products/FAN-0305-3008/FAN-0305-3008_b-800x800.jpg)]
+
+A **5V DC fan** is often used for cooling purposes in electronic projects. It's essential to note that you should **never directly drive the fan with an ESP32 GPIO pin**, as the GPIOs cannot supply enough current to safely power the fan. Instead, use a **relay module** or **transistor** as an intermediary to control the fan's operation.
+
+---
+
+**🛠 Wiring (To ESP32 via Relay Module)**
+| Fan Pin | Connection      | Function                         |
+|---------|-----------------|----------------------------------|
+| **VCC** | 5V Power Supply | Provides power to the fan       |
+| **GND** | ESP32 GND       | Common ground                   |
+| **Relay NO** | Relay Output Pin | Connects to the fan's power     |
+| **Relay IN** | GPIO Pin (e.g., GPIO 26) | Controls the relay and fan    |
+
+🔹 **Important Notes:**
+- Use the **Relay Module** to control the fan's power by switching its 5V supply.
+- **Relay NO** (Normally Open) pin is used to connect the fan’s **VCC** to the 5V supply when the relay is activated.
+  
+---
+
+**📜 Example Code**
+```cpp
+const int relayPin = 26;  // GPIO connected to relay module
+
+void setup() {
+  pinMode(relayPin, OUTPUT);  // Set relay pin as output
+}
+
+void loop() {
+  digitalWrite(relayPin, HIGH);  // Turn fan ON by activating relay
+  delay(5000);                   // Keep it ON for 5 sec
+  digitalWrite(relayPin, LOW);   // Turn fan OFF by deactivating relay
+  delay(5000);                   // Keep it OFF for 5 sec
+}
+```
 
 - Mist module
-- Relay board
+
