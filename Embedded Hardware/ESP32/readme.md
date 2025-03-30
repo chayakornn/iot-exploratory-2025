@@ -11,6 +11,7 @@ In this workshop, we will explore ESP32’s capabilities through **hands-on exam
 Here is the pinout diagram for the **ESP32 DevKit V1 (30-pin version):**
 
 ![ESP32 Pinout](https://lastminuteengineers.com/wp-content/uploads/iot/ESP32-Pinout.png)
+
 *Image Source: [https://lastminuteengineers.com](https://lastminuteengineers.com)*
 
 ## Sensors, Peripherals and Actuators
