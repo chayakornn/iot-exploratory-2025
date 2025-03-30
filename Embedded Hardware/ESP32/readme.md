@@ -747,6 +747,7 @@ void loop() {
 ---
 
 ### Extra
+This section contains a collection of more complex hardware components, designed for those who are looking for a challenge. 
 
 ### 🔢 TM1638 LED and Key Module
 
@@ -813,6 +814,6 @@ void loop() {
   
   delay(500);  // Delay for half a second before next update
 }
-
+```
 
 
