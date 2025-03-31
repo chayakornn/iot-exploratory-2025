@@ -15,16 +15,16 @@ Welcome to Part 2 of the IoT Workshop! In this part, you'll integrate your ESP32
    ```
 2. **Set Up Service Account:**
    ```bash
-   gcloud iam service-accounts create mqtt-pubsub-forwarder --display-name="MQTT to Pub/Sub Forwarder"
+   gcloud iam service-accounts create <GROUP_ID>-mqtt-pubsub-forwarder --display-name="<GROUP_ID> MQTT to Pub/Sub Forwarder"
    ```
 3. **Grant Permission:**
    ```bash
-   gcloud projects add-iam-policy-binding iot-exploratory-2025 --member="serviceAccount:mqtt-pubsub-forwarder@iot-exploratory-2025.iam.gserviceaccount.com" --role="roles/pubsub.publisher"
+   gcloud projects add-iam-policy-binding iot-exploratory-2025 --member="serviceAccount:<GROUP_ID>-mqtt-pubsub-forwarder@iot-exploratory-2025.iam.gserviceaccount.com" --role="roles/pubsub.publisher"
    ```
 4. **Create Credentials Key:**
    On your terminal, change directory to a working directory that will save the generated key file.
    ```bash
-   gcloud iam service-accounts keys create credentials.json --iam-account=mqtt-pubsub-forwarder@iot-exploratory-2025.iam.gserviceaccount.com
+   gcloud iam service-accounts keys create credentials.json --iam-account=<GROUP_ID>-mqtt-pubsub-forwarder@iot-exploratory-2025.iam.gserviceaccount.com
    ```
    This will save a file a `credentials.json` file into current directory.
 5. **Create a Pub/Sub Topic**:
