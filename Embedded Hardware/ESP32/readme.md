@@ -1347,7 +1347,8 @@ void reconnect() {
       delay(5000);
     }
   }
-}```
+}
+```
 
 ---
 ### I2C Communication
