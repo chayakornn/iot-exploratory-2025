@@ -969,7 +969,9 @@ void setup() {
   // Connect to MQTT broker
   client.setServer(mqttServer, mqttPort);
   while (!client.connected()) {
-    if (client.connect("ESP32Client")) {
+    String client_id = "esp32-client-";
+    client_id += String(WiFi.macAddress());
+    if (client.connect(client_id.c_str())) {
       Serial.println("Connected to MQTT broker");
     } else {
       delay(5000);
@@ -990,7 +992,9 @@ void loop() {
 
 void reconnect() {
   while (!client.connected()) {
-    if (client.connect("ESP32Client")) {
+    String client_id = "esp32-client-";
+    client_id += String(WiFi.macAddress());
+    if (client.connect(client_id.c_str())) {
       Serial.println("Reconnected to MQTT broker");
     } else {
       delay(5000);
@@ -1028,7 +1032,9 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
-    if (client.connect("ESP32Client")) {
+    String client_id = "esp32-client-";
+    client_id += String(WiFi.macAddress());
+    if (client.connect(client_id.c_str())) {
       Serial.println("Connected to MQTT broker");
     } else {
       Serial.print("Failed to connect. Retrying in 5 seconds...");
@@ -1100,7 +1106,9 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
-    if (client.connect("ESP32Client")) {
+    String client_id = "esp32-client-";
+    client_id += String(WiFi.macAddress());
+    if (client.connect(client_id.c_str())) {
       Serial.println("Connected to MQTT broker");
       // Subscribe to the topic once connected
       client.subscribe(subscribeTopic);
@@ -1181,7 +1189,9 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
-    if (client.connect("ESP32Client")) {
+    String client_id = "esp32-client-";
+    client_id += String(WiFi.macAddress());
+    if (client.connect(client_id.c_str())) {
       Serial.println("Connected to MQTT broker");
       // Subscribe to topics once connected
       client.subscribe(topic1);
@@ -1283,7 +1293,9 @@ void setup() {
   // Connect to MQTT broker
   client.setServer(mqttServer, mqttPort);
   while (!client.connected()) {
-    if (client.connect("ESP32Client", mqttUser, mqttPassword)) {
+    String client_id = "esp32-client-";
+    client_id += String(WiFi.macAddress());
+    if (client.connect(client_id.c_str(), mqttUser, mqttPassword)) {
       Serial.println("Connected to MQTT broker");
     } else {
       Serial.print("Failed to connect, retrying...");
