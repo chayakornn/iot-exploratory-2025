@@ -110,9 +110,9 @@ Explore the examples to learn how to **read sensor data, display information, an
   A **potentiometer** (variable resistor) commonly used for adjusting brightness, volume, or other input values. It outputs a variable voltage between **0V and 3.3V**, which the ESP32 reads using its **ADC (Analog-to-Digital Converter)**.  
 
   **🛠 Wiring:**  
-  - **VCC (Left pin)** → **3.3V**  
-  - **GND (Right pin)** → **GND**  
+  - **VCC    (Left pin)**   → **3.3V**  
   - **Output (Middle pin)** → **GPIO 34**  
+  - **GND    (Right pin)**  → **GND**  
 
   **📜 Example Code:**  
 
