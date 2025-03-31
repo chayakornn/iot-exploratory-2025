@@ -27,23 +27,30 @@ The **GY-906 MLX90614** is a **non-contact infrared temperature sensor** that me
 #### 📜 Example Code (I2C Mode)
 
 ```cpp
+#include <Wire.h>
 #include "VEGA_MLX90614.h"
-VEGA_MLX90614 mlx(3,4); // SDA , SCL
 
-void setup()
-{
-  delay(2000);
-  Serial.begin(115200); 
-  Serial.println("+-----[ MLX90614 Temperature Sensor with VEGA ARIES Boards ]-----+");
+#define SDA_PIN 21
+#define SCL_PIN 22
+
+VEGA_MLX90614 mlx(SDA_PIN, SCL_PIN);  // Use correct ESP32 I2C pins
+
+void setup() {
+  Wire.begin(SDA_PIN, SCL_PIN);  // Initialize I2C
+  Serial.begin(115200);
+  Serial.println("+-----[ MLX90614 Temperature Sensor with ESP32 ]-----+");
 }
 
-void loop () {
+void loop() {
   double temperature;
-  temperature = mlx.mlx90614ReadAmbientTempC();  // This function will return ambient temperature
-  Serial.print("Ambient Temp : ");
+
+  temperature = mlx.mlx90614ReadAmbientTempC();  // Read ambient temperature
+  Serial.print("Ambient Temp: ");
   Serial.print(temperature);
-  temperature = mlx.mlx90614ReadTargetTempC();   // This function will return target temperature
-  Serial.print("   Target Temp :");
+
+  temperature = mlx.mlx90614ReadTargetTempC();   // Read target temperature
+  Serial.print("   Target Temp: ");
   Serial.println(temperature);
+
   delay(500);
 }
