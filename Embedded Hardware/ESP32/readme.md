@@ -1305,6 +1305,12 @@ void setup() {
 }
 
 void loop() {
+  // Ensure the MQTT client remains connected
+  if (!client.connected()) {
+    reconnect();
+  }
+  client.loop();
+
   // Create a JSON object
   StaticJsonDocument<200> doc;
 
