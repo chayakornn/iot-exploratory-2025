@@ -1268,7 +1268,7 @@ This example demonstrates how to publish 3 values, packed as a JSON object, to a
 #include <ArduinoJson.h>  // Include the Arduino JSON library
 
 // Wi-Fi credentials
-const char* ssid = "Exploratory";
+const char* ssid = "Exploratory2";
 const char* password = "!tggs2025";
 
 // MQTT Broker settings
@@ -1295,7 +1295,7 @@ void setup() {
   while (!client.connected()) {
     String client_id = "esp32-client-";
     client_id += String(WiFi.macAddress());
-    if (client.connect(client_id.c_str(), mqttUser, mqttPassword)) {
+    if (client.connect(client_id.c_str())) {
       Serial.println("Connected to MQTT broker");
     } else {
       Serial.print("Failed to connect, retrying...");
@@ -1332,7 +1332,22 @@ void loop() {
 
   delay(2000);  // Publish every 2 seconds
 }
-```
+
+// Function to reconnect to the MQTT broker
+void reconnect() {
+  while (!client.connected()) {
+    Serial.print("Attempting MQTT connection...");
+    // Attempt to connect
+    String client_id = "esp32-client-";
+    client_id += String(WiFi.macAddress());
+    if (client.connect(client_id.c_str())) {
+      Serial.println("Connected to MQTT broker");
+    } else {
+      Serial.print("Failed to connect. Retrying in 5 seconds...");
+      delay(5000);
+    }
+  }
+}```
 
 ---
 ### I2C Communication
