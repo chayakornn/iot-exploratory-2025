@@ -7,7 +7,7 @@ GROUP_ID = "<groupname>"
 
 # === CONFIGURATION ===
 MQTT_BROKER_IP = "192.168.0.0"  # Replace with your MQTT broker IP
-MQTT_BROKER_PORT = 1883           # Replace with your MQTT broker port
+MQTT_BROKER_PORT = 1883         # Replace with your MQTT broker port
 MQTT_TOPIC = f"{GROUP_ID}/weather/sensor"
 
 GCP_PROJECT_ID = "<project_name>"
